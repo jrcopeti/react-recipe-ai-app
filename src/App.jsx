@@ -1,11 +1,9 @@
-
 function App() {
-
   return (
-    <div>
-      HELLO WORLD
+    <div className="text-primary">
+      <input type="file" className="file-input w-full max-w-xs" />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
