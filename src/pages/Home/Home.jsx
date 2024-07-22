@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { useFetchRecipeAI } from "../../hooks/useFetchRecipeAI";
+import { useCreateRecipe } from "../../hooks/useCreateRecipe";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const { recipe, isLoading, error } = useFetchRecipeAI(prompt);
+  // const { recipe, isLoading, error } = useFetchRecipeAI(prompt);
+
+  const { recipe, isLoading, error, createRecipe } = useCreateRecipe();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("prompt", prompt);
-    setPrompt(inputValue);
+    const data = {
+      title: inputValue,
+    };
+    console.log(data);
+    createRecipe(data);
   };
 
   return (
