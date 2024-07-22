@@ -5,25 +5,25 @@ import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 // import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 
 export default function Home() {
-  const [prompt, setPrompt] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  // const { recipe, isLoading, error } = useFetchRecipeAI(prompt);
-  const id = 2;
-  const { recipe, isLoading, error} = useGetRecipeById(id);
-  console.log(recipe);
+  // const [prompt, setPrompt] = useState("");
+  // const [inputValue, setInputValue] = useState("");
+  // // const { recipe, isLoading, error } = useFetchRecipeAI(prompt);
+  // const id = 2;
+  // const { recipe, isLoading, error} = useGetRecipeById(id);
+  // console.log(recipe);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = {
-      title: inputValue,
-    };
-    console.log(data);
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = {
+  //     title: inputValue,
+  //   };
+  //   console.log(data);
 
-  };
+  // };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <label>
           Recipe:
           <input

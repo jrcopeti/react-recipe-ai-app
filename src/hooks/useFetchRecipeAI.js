@@ -1,31 +1,25 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { fetchResponseAI } from "../services/apiOpenAi";
 
-function useFetchRecipeAI(prompt) {
+function useFetchRecipeAI() {
   const [recipe, setRecipe] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoadingRecipeAi, setIsLoadingRecipeAi] = useState(false);
+  const [errorAi, setErrorAi] = useState(null);
 
-  useEffect(() => {
-    if (!prompt) return;
+  const fetchRecipeAi = async (prompt) => {
+    setIsLoadingRecipeAi(true);
+    setErrorAi(null);
+    try {
+      const data = await fetchResponseAI(prompt);
+      setRecipe(data);
+    } catch (error) {
+      setErrorAi(error);
+    } finally {
+      setIsLoadingRecipeAi(false);
+    }
+  };
 
-    const fetchRecipeAI = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const data = await fetchResponseAI(prompt);
-        setRecipe(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchRecipeAI();
-  }, [prompt]);
-
-  return { recipe, isLoading, error };
+  return { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi };
 }
 
 export { useFetchRecipeAI };
