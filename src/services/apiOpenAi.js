@@ -2,6 +2,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_KEY,
+  dangerouslyAllowBrowser: true,
 });
 
 const systemInstructions =
@@ -39,7 +40,7 @@ const functionData = {
 export const fetchResponseAI = async ({
   setIsLoading,
   setError,
-  setRecipes,
+  setRecipe,
   prompt,
 }) => {
   try {
@@ -52,22 +53,26 @@ export const fetchResponseAI = async ({
         { role: "user", content: prompt },
       ],
       tools: [{ type: "function", function: functionData }],
-      tool_choice: { type: "function", function: { name: "tripData" } },
+      tool_choice: { type: "function", function: { name: "recipeData" } },
       temperature: 0,
     });
     console.log("response:---", response);
     const data =
-      response.choices?.[0].message.tool_calls?.[0]?.function.arguments ?? null;
+      response.choices?.[0].message.tool_calls?.[0]?.function.arguments;
     console.log("data:---", data);
     const parsedData = JSON.parse(data ?? "");
     console.log("parsed data:----", parsedData);
 
-    if (parsedData.recipe === null) {
+    if (parsedData === null) {
       return null;
-    } else if (parsedData.recipe === undefined) {
+    } else if (parsedData === undefined) {
       throw new Error("Recipe not found");
     } else {
-      setRecipes(parsedData.recipe);
+      setRecipe({
+        title: parsedData.title,
+        ingredients: parsedData.ingredients,
+        steps: parsedData.steps,
+      });
     }
   } catch (error) {
     console.error("Error:", error);
