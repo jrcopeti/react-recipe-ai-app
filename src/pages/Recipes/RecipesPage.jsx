@@ -1,7 +1,12 @@
-function RecipesPage () {
-    return (
-        <div>I am the Recipes Page with a list of all saved recipes.</div>
-    );
+import RecipesIndex from "../../components/recipes/GenerateRecipe";
+
+function RecipesPage() {
+  return (
+    <div>
+      I am the Recipes Page with a list of all saved recipes.
+
+    </div>
+  );
 }
 
 export default RecipesPage;

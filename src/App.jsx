@@ -4,8 +4,8 @@ import About from "./pages/About.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import RecipesPage from "./pages/Recipes/RecipesPage.jsx";
 import Recipe from "./pages/Recipe.jsx";
-import GenerateRecipe from "./pages/GenerateRecipe.jsx";
-import AppLayout from "./components/AppLayout.jsx";
+import GenerateRecipe from "./pages/GenerateRecipe/GenerateRecipePage.jsx";
+import AppLayout from "./components/layout/AppLayout.jsx";
 
 function App() {
   return (
