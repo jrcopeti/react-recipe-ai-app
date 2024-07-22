@@ -1,10 +1,9 @@
-import RecipesIndex from "../../components/recipes/GenerateRecipe";
+import FavoriteRecipesList from "../../components/recipes/FavoriteRecipeList";
 
 function RecipesPage() {
   return (
     <div>
-      I am the Recipes Page with a list of all saved recipes.
-
+      <FavoriteRecipesList />
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import { useState } from "react";
-import FavoriteRecipes from "./FavoriteRecipes";
+import FavoriteRecipes from "./FavoriteRecipeCard";
 import RecipeForm from "./RecipeForm";
 import { useFetchRecipeAI } from "../../hooks/useFetchRecipeAI";
 import RecipeCard from "./RecipeCard";
+import { useCreateRecipe } from "../../hooks/useCreateRecipe";
 
 function GenerateRecipe() {
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi } =
     useFetchRecipeAI();
+  const { createRecipe } = useCreateRecipe();
   console.log(recipe);
 
   const ingredients = "broccoli, rice, soy sauce, garlic";
@@ -36,8 +38,9 @@ Flavor Profile: The user prefers ${flavorProfile} flavor profile (e.g., spicy, s
     fetchRecipeAi(prompt);
   };
 
-  const handleSaveRecipe = (recipe) => {
+  const handleFavoriteRecipe = (recipe) => {
     console.log("recipe saved", recipe);
+    createRecipe(recipe);
   };
 
   if (isLoadingRecipeAi)
@@ -49,7 +52,10 @@ Flavor Profile: The user prefers ${flavorProfile} flavor profile (e.g., spicy, s
     <>
       <div>
         <RecipeForm handleGenerateRecipe={handleGenerateRecipe} />
-        <RecipeCard recipe={recipe} handleSaveRecipe={handleSaveRecipe} />
+        <RecipeCard
+          recipe={recipe}
+          handleFavoriteRecipe={handleFavoriteRecipe}
+        />
       </div>
       {/* <FavoriteRecipes favoriteRecipes={favoriteRecipes} /> */}
     </>
