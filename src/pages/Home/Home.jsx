@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useFetchRecipeAI } from "../../hooks/useFetchRecipeAI";
-import { useCreateRecipe } from "../../hooks/useCreateRecipe";
+import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
+import { useGetRecipeById } from "../../hooks/useGetRecipeById";
+// import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [inputValue, setInputValue] = useState("");
   // const { recipe, isLoading, error } = useFetchRecipeAI(prompt);
-
-  const { recipe, isLoading, error, createRecipe } = useCreateRecipe();
+  const id = 2;
+  const { recipe, isLoading, error} = useGetRecipeById(id);
+  console.log(recipe);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,7 +18,7 @@ export default function Home() {
       title: inputValue,
     };
     console.log(data);
-    createRecipe(data);
+
   };
 
   return (
@@ -33,7 +36,7 @@ export default function Home() {
         <button type="submit">Submit Recipe</button>
       </form>
 
-      {isLoading && <p>Loading...</p>}
+      {/* {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {recipe && (
         <div>
@@ -51,7 +54,7 @@ export default function Home() {
             ))}
           </ol>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

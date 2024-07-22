@@ -1,29 +1,23 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { deleteRecipe as deleteRecipeApi } from "../services/apiRecipes";
 
-function useDeleteRecipe(recipeId) {
-  const [recipe, setRecipe] = useState(null);
+function useDeleteRecipe() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const deleteRecipe = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const data = await deleteRecipeApi(recipeId);
-        setRecipe(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    deleteRecipe();
-  }, [recipeId]);
+  const deleteRecipe = async (recipe) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await deleteRecipeApi(recipe);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  return { recipe, isLoading, error };
+  return { isLoading, error, deleteRecipe };
 }
 
 export { useDeleteRecipe };
