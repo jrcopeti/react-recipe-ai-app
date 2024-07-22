@@ -79,7 +79,7 @@ const functionData = {
   },
 };
 
-export const fetchResponseAI = async (prompt) => {
+export const fetchResponseAi = async (prompt) => {
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4o",

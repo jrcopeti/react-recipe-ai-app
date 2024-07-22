@@ -3,26 +3,26 @@ import { createRecipe as createRecipeApi } from "../services/apiRecipes";
 
 function useCreateRecipe() {
   const [newRecipe, setNewRecipe] = useState(null);
-  const [isLoadingCreatingRecipe, setIsLoadingCreatingRecipe] = useState(false);
-  const [errorCreatingRecipe, setErrorCreatingRecipe] = useState(null);
+  const [isLoadingCreating, setIsLoadingCreating] = useState(false);
+  const [errorCreating, setErrorCreating] = useState(null);
 
   const createRecipe = async (recipe) => {
-    setIsLoadingCreatingRecipe(true);
-    setErrorCreatingRecipe(null);
+    setIsLoadingCreating(true);
+    setErrorCreating(null);
     try {
       const data = await createRecipeApi(recipe);
       setNewRecipe(data);
     } catch (error) {
-      setErrorCreatingRecipe(errorCreatingRecipe);
+      setErrorCreating(errorCreating);
     } finally {
-      setIsLoadingCreatingRecipe(false);
+      setIsLoadingCreating(false);
     }
   };
 
   return {
     newRecipe,
-    isLoadingCreatingRecipe,
-    errorCreatingRecipe,
+    isLoadingCreating,
+    errorCreating,
     createRecipe,
   };
 }

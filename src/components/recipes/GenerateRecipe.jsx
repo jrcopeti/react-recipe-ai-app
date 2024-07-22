@@ -1,13 +1,13 @@
 import { useState } from "react";
 import FavoriteRecipes from "./FavoriteRecipeCard";
 import RecipeForm from "./RecipeForm";
-import { useFetchRecipeAI } from "../../hooks/useFetchRecipeAI";
+import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAi";
 import RecipeCard from "./RecipeCard";
 import { useCreateRecipe } from "../../hooks/useCreateRecipe";
 
 function GenerateRecipe() {
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi } =
-    useFetchRecipeAI();
+    useFetchRecipeAi();
   const { createRecipe } = useCreateRecipe();
   console.log(recipe);
 
@@ -57,7 +57,6 @@ Flavor Profile: The user prefers ${flavorProfile} flavor profile (e.g., spicy, s
           handleFavoriteRecipe={handleFavoriteRecipe}
         />
       </div>
-      {/* <FavoriteRecipes favoriteRecipes={favoriteRecipes} /> */}
     </>
   );
 }

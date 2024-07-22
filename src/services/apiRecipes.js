@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiURL = "http://localhost:5005";
 
-const getAllRecipes = async () => {
+const getAllRecipesApi = async () => {
   try {
     const response = await axios.get(`${apiURL}/recipes`);
     const { data } = response;
@@ -57,7 +57,7 @@ const deleteRecipe = async (recipeId) => {
 };
 
 export {
-  getAllRecipes,
+  getAllRecipesApi,
   getRecipeById,
   createRecipe,
   updateRecipe,

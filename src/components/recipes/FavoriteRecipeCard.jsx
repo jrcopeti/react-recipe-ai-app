@@ -1,8 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetRecipeById } from "../../hooks/useGetRecipeById";
+import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
 
 function FavoriteRecipeCard() {
   const { recipeId } = useParams();
+  const navigate = useNavigate();
+  const { deleteRecipe } = useDeleteRecipe();
+
+  const handleDeleteRecipe = (id) => {
+    console.log("Recipe deleted in Favorite recipes list", id);
+    deleteRecipe(id);
+    navigate("/recipes");
+  };
 
   const { recipe: favoriteRecipe } = useGetRecipeById(recipeId);
   console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
@@ -38,12 +47,12 @@ function FavoriteRecipeCard() {
       <p>
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
-      {/* <button
-        className="bg-pallette-100 btn btn-secondary mt-4 text-black"
+      <button
+        className="btn btn-secondary"
         onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
       >
-        Save to Favorites
-      </button> */}
+        Remove from Favorites
+      </button>
     </div>
   );
 }

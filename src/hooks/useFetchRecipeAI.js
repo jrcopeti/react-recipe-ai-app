@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { fetchResponseAI } from "../services/apiOpenAi";
+import { fetchResponseAi } from "../services/apiOpenAi";
 
-function useFetchRecipeAI() {
+function useFetchRecipeAi() {
   const [recipe, setRecipe] = useState(null);
   const [isLoadingRecipeAi, setIsLoadingRecipeAi] = useState(false);
   const [errorAi, setErrorAi] = useState(null);
@@ -10,7 +10,7 @@ function useFetchRecipeAI() {
     setIsLoadingRecipeAi(true);
     setErrorAi(null);
     try {
-      const data = await fetchResponseAI(prompt);
+      const data = await fetchResponseAi(prompt);
       setRecipe(data);
     } catch (error) {
       setErrorAi(error);
@@ -22,4 +22,4 @@ function useFetchRecipeAI() {
   return { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi };
 }
 
-export { useFetchRecipeAI };
+export { useFetchRecipeAi };
