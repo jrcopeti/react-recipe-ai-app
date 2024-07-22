@@ -1,84 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
+
 function RecipeForm({ onGenerateRecipes }) {
-  const [ingredients, setIngredients] = useState("");
-  const [time, setTime] = useState("");
-  const [guests, setGuests] = useState("");
-  const [restrictions, setRestrictions] = useState("");
-  const [difficulty, setDifficulty] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Mock data for new recipes
     const newRecipes = [
       {
-        title: "Example Recipe",
-        description: "A quick and easy example recipe.",
+        title: "Quick Veggie Stir-Fry",
+        description:
+          "A vibrant and speedy stir-fry using bell peppers, carrots, and tofu.",
         preparationTime: "20 minutes",
         difficultyLevel: "Easy",
-        dietaryCompliance: "Vegan",
-        ingredients: ["Ingredient 1", "Ingredient 2"],
-        instructions: ["Step 1", "Step 2"],
+        dietaryCompliance: "Vegan and gluten-free",
+        ingredients: [
+          "1 red bell pepper, sliced",
+          "1 cup carrots, sliced",
+          "1 cup firm tofu, cubed",
+          "2 tablespoons gluten-free soy sauce",
+          "1 tablespoon olive oil",
+          "2 cloves garlic, minced",
+        ],
+        instructions: [
+          "Heat olive oil in a large skillet over medium heat.",
+          "Add garlic and sauté for 1 minute.",
+          "Add tofu cubes and cook until golden, about 5 minutes.",
+          "Add bell peppers and carrots, stir-frying for an additional 5 minutes.",
+          "Stir in soy sauce and cook for another 3 minutes.",
+          "Serve hot, garnished with sesame seeds if desired.",
+        ],
         servingSize: "2 servings",
-        scalingInstructions: "Multiply by number of servings.",
-        servingSuggestions: "Serve with a side salad.",
-        notesAndTips: "Add a pinch of salt for extra flavor.",
+        scalingInstructions:
+          "Adjust the ingredients proportionally for more servings.",
+        servingSuggestions: "Serve with steamed rice or noodles.",
+        notesAndTips:
+          "You can add other vegetables like broccoli or snap peas.",
       },
     ];
     onGenerateRecipes(newRecipes);
   };
+
   return (
-    <form onSubmit={handleSubmit} className="mb-6">
-      <div className="mb-4">
-        <label className="mb-2 block">Ingredients (comma-separated):</label>
-        <input
-          type="text"
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-          className="input input-bordered w-full max-w-xs"
-          placeholder="e.g., chicken, rice, broccoli"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="mb-2 block">Preparation Time:</label>
-        <input
-          type="text"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className="input input-bordered w-full max-w-xs"
-          placeholder="e.g., 30 minutes"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="mb-2 block">Number of Guests:</label>
-        <input
-          type="number"
-          value={guests}
-          onChange={(e) => setGuests(e.target.value)}
-          className="input input-bordered w-full max-w-xs"
-          placeholder="e.g., 4"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="mb-2 block">Dietary Restrictions:</label>
-        <input
-          type="text"
-          value={restrictions}
-          onChange={(e) => setRestrictions(e.target.value)}
-          className="input input-bordered w-full max-w-xs"
-          placeholder="e.g., vegan, gluten-free"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="mb-2 block">Difficulty Level:</label>
-        <select
-          value={difficulty}
-          onChange={(e) => setDifficulty(e.target.value)}
-          className="select select-bordered w-full max-w-xs"
-        >
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
-      <button type="submit" className="btn btn-primary">
+    <form onSubmit={handleSubmit} className="mb-8">
+      <button
+        type="submit"
+        className="bg-pallette-50 btn btn-primary text-black"
+      >
         Generate Recipes
       </button>
     </form>

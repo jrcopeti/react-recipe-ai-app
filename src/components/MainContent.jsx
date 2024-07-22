@@ -2,13 +2,13 @@ import React from "react";
 import RecipeForm from "./RecipeForm";
 import RecipeList from "./RecipeList";
 
-const MainContent = ({ recipes, onGenerateRecipes }) => {
+function MainContent({ recipes, onGenerateRecipes, onSaveFavorite }) {
   return (
-    <main className="bg-pallette-400 ${isSidebarOpen ? min-h-[92vh] p-4 duration-300 ease-in-out">
+    <div>
       <RecipeForm onGenerateRecipes={onGenerateRecipes} />
-      <RecipeList recipes={recipes} />
-    </main>
+      <RecipeList recipes={recipes} onSaveFavorite={onSaveFavorite} />
+    </div>
   );
-};
+}
 
 export default MainContent;

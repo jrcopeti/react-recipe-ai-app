@@ -1,8 +1,8 @@
 import React from "react";
 
-function RecipeCard({ recipe, onSaveFavorite }) {
+function FavoriteRecipeCard({ recipe }) {
   return (
-    <div className="border-pallette-200 bg-pallette-400 rounded-lg border p-6 shadow-lg">
+    <div className="bg-pallette-300 rounded-lg border border-gray-900 p-6 shadow-lg">
       <h2 className="mb-2 text-3xl font-bold">{recipe.title}</h2>
       <p className="mb-4 text-cyan-950">{recipe.description}</p>
       <p>
@@ -21,7 +21,7 @@ function RecipeCard({ recipe, onSaveFavorite }) {
         ))}
       </ul>
       <h3 className="mb-2 mt-4 font-semibold">Instructions:</h3>
-      <ol className="mb-4 list-inside list-decimal">
+      <ol className="mb-4 list-inside list-decimal text-cyan-950">
         {recipe.instructions.map((step, i) => (
           <li key={i}>{step}</li>
         ))}
@@ -30,7 +30,7 @@ function RecipeCard({ recipe, onSaveFavorite }) {
         <strong>Serving Size:</strong> {recipe.servingSize}
       </p>
       <p>
-        <strong>Scaling Instructions:</strong> {recipe.scalingInstructions}
+        <strong>Instructions:</strong> {recipe.scalingInstructions}
       </p>
       <p>
         <strong>Serving Suggestions:</strong> {recipe.servingSuggestions}
@@ -38,14 +38,8 @@ function RecipeCard({ recipe, onSaveFavorite }) {
       <p>
         <strong>Notes and Tips:</strong> {recipe.notesAndTips}
       </p>
-      <button
-        className="bg-pallette-100 btn btn-secondary mt-4 text-black"
-        onClick={() => onSaveFavorite(recipe)}
-      >
-        Save to Favorites
-      </button>
     </div>
   );
 }
 
-export default RecipeCard;
+export default FavoriteRecipeCard;
