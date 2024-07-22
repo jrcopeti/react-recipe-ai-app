@@ -37,15 +37,8 @@ const functionData = {
   },
 };
 
-export const fetchResponseAI = async ({
-  setIsLoading,
-  setError,
-  setRecipe,
-  prompt,
-}) => {
+export const fetchResponseAI = async (prompt) => {
   try {
-    setIsLoading(true);
-    setError(null);
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
@@ -68,16 +61,10 @@ export const fetchResponseAI = async ({
     } else if (parsedData === undefined) {
       throw new Error("Recipe not found");
     } else {
-      setRecipe({
-        title: parsedData.title,
-        ingredients: parsedData.ingredients,
-        steps: parsedData.steps,
-      });
+      return parsedData;
     }
   } catch (error) {
     console.error("Error:", error);
-    setError(error);
-  } finally {
-    setIsLoading(false);
+    return null;
   }
 };
