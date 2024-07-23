@@ -74,7 +74,6 @@ function GenerateRecipe() {
     setTypeOfMeal("");
     console.log("recipe generated");
   };
-  console.log("errorCreating.......", errorCreating);
 
   const handleFavoriteRecipe = async (recipe) => {
     const newRecipe = {

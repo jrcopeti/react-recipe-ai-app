@@ -42,8 +42,7 @@ function RecipeCard({
 
       {errorCreating ? (
         <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
-          <p>Error: {errorCreating.message}</p>
-          {/* <button onClick={() => window.location.reload()}>Try Again</button> */}
+          <p>There was an error in saving the recipe.</p>
           <button onClick={() => setErrorCreating(null)}>Try Again</button>
         </div>
       ) : (
@@ -51,6 +50,7 @@ function RecipeCard({
           <button
             className="btn btn-secondary mt-4 bg-pallette-100 text-black"
             onClick={() => handleFavoriteRecipe(recipe)}
+            disabled={isCreating}
           >
             {isCreating ? (
               <span className="loading loading-ring loading-sm"></span>
@@ -61,6 +61,7 @@ function RecipeCard({
           <button
             className="btn btn-secondary mt-4 bg-pallette-100 text-black"
             onClick={() => handleDiscardRecipe()}
+            disabled={isCreating}
           >
             Get Another Recipe
           </button>
