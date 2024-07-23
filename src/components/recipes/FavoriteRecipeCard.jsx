@@ -1,11 +1,33 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
+import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
+import { useState } from "react";
 
 function FavoriteRecipeCard() {
   const { recipeId } = useParams();
   const navigate = useNavigate();
+
+  const {
+    recipe: favoriteRecipe,
+    getRecipeById,
+    errorRecipeById,
+  } = useGetRecipeById(recipeId);
+
+  const {
+    updateRecipe,
+    isLoading: isUpdating,
+    errorUpdate,
+  } = useUpdateRecipe(getRecipeById);
+  
   const { deleteRecipe } = useDeleteRecipe();
+
+  console.log(" smnjsns", errorUpdate);
+
+  console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
+  const [isReviewing, setIsReviewing] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
 
   const handleDeleteRecipe = (id) => {
     console.log("Recipe deleted in Favorite recipes list", id);
@@ -13,11 +35,44 @@ function FavoriteRecipeCard() {
     navigate("/recipes");
   };
 
-  const { recipe: favoriteRecipe } = useGetRecipeById(recipeId);
-  console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
-  if (!favoriteRecipe) return;
+  const toggleReview = () => {
+    setIsReviewing((prevState) => !prevState);
+  };
+
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    console.log("review submitted");
+    const updatedRecipe = {
+      ...favoriteRecipe,
+      reviews: [
+        ...favoriteRecipe.reviews,
+        {
+          rating: +rating,
+          review: review,
+        },
+      ],
+    };
+    updateRecipe(favoriteRecipe.id, updatedRecipe);
+  };
+
+  if (!favoriteRecipe)
+    return (
+      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+        <p>No Recipe was found here...</p>
+      </div>
+    );
+
+  if (errorRecipeById)
+    return (
+      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+        <p>Error: {errorRecipeById.message}</p>
+        <Link to="/">
+          <button>Back to Home</button>
+        </Link>
+      </div>
+    );
   return (
-    <div className="border-pallette-200 bg-pallette-400 rounded-lg border p-6 shadow-lg">
+    <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
       <h2 className="mb-2 text-3xl font-bold">{favoriteRecipe.title}</h2>
       <p className="mb-4 text-cyan-950">{favoriteRecipe.description}</p>
       <p>
@@ -47,12 +102,82 @@ function FavoriteRecipeCard() {
       <p>
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
-      <button
-        className="btn btn-secondary"
-        onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
-      >
-        Remove from Favorites
-      </button>
+
+      <section>
+        <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
+        {favoriteRecipe.reviews.map((review, i) => (
+          <div key={i}>
+            <p>
+              <strong>Rating:</strong> {review.rating}
+            </p>
+            <p>{review.review}</p>
+          </div>
+        ))}
+      </section>
+
+      {!isReviewing ? (
+        <>
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
+          >
+            Remove from Favorites
+          </button>
+          <button className="btn btn-primary" onClick={() => toggleReview()}>
+            Review Recipe
+          </button>
+        </>
+      ) : (
+        <>
+          {errorUpdate ? (
+            <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+              <p>There was an error in creating a review. </p>
+              <button
+                className="btn btn-secondary"
+                onClick={() => window.location.reload()}
+              >
+                Try Again
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleReviewSubmit}>
+              <label className="block" htmlFor="rating">
+                Rating:
+              </label>
+              <select
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                className="w-20 rounded-lg border border-pallette-200 p-2"
+              >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <input
+                className="w-full rounded-lg border border-pallette-200 p-2"
+                placeholder="Write your review here..."
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+                disabled={isUpdating}
+              />
+
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={isUpdating}
+              >
+                {isUpdating ? (
+                  <span className="loading loading-ring loading-sm"></span>
+                ) : (
+                  "Submit Review"
+                )}
+              </button>
+            </form>
+          )}
+        </>
+      )}
     </div>
   );
 }

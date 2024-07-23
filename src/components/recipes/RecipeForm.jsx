@@ -25,21 +25,21 @@ function RecipeForm({
 }) {
   return (
     <>
-      <h1>I am a form to generate a recipe.</h1>
-
       <form onSubmit={handleGenerateRecipe}>
         <div>
           <div>
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                What have you got left in your fridge and pantry? Choose up to
-                five incredients for your recipe.
+                <h2 className="text-2xl">
+                  Do you want a idea for a recipe? Choose up to five ingredients
+                  for your recipe.
+                </h2>
               </div>
             </label>
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 1:</span>
+                <span className="label-text">Ingredient 1:</span>
               </div>
               <input
                 type="text"
@@ -53,7 +53,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 2:</span>
+                <span className="label-text">Ingredient 2:</span>
               </div>
               <input
                 type="text"
@@ -67,7 +67,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 3:</span>
+                <span className="label-text">Ingredient 3:</span>
               </div>
               <input
                 type="text"
@@ -81,7 +81,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 4:</span>
+                <span className="label-text">Ingredient 4:</span>
               </div>
               <input
                 type="text"
@@ -95,7 +95,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 5:</span>
+                <span className="label-text">Ingredient 5:</span>
               </div>
               <input
                 type="text"

@@ -1,5 +1,13 @@
-function RecipeCard({ recipe, handleFavoriteRecipe, handleDiscardRecipe }) {
+function RecipeCard({
+  recipe,
+  handleFavoriteRecipe,
+  handleDiscardRecipe,
+  isCreating,
+  errorCreating,
+  setErrorCreating,
+}) {
   if (!recipe) return;
+
   return (
     <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
       <h2 className="mb-2 text-3xl font-bold">{recipe.title}</h2>
@@ -31,18 +39,33 @@ function RecipeCard({ recipe, handleFavoriteRecipe, handleDiscardRecipe }) {
       <p>
         <strong>Notes and Tips:</strong> {recipe.tips}
       </p>
-      <button
-        className="btn btn-secondary mt-4 bg-pallette-100 text-black"
-        onClick={() => handleFavoriteRecipe(recipe)}
-      >
-        Save to Favorites
-      </button>
-      <button
-        className="btn btn-secondary mt-4 bg-pallette-100 text-black"
-        onClick={() => handleDiscardRecipe()}
-      >
-        Get Another Recipe
-      </button>
+
+      {errorCreating ? (
+        <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+          <p>Error: {errorCreating.message}</p>
+          {/* <button onClick={() => window.location.reload()}>Try Again</button> */}
+          <button onClick={() => setErrorCreating(null)}>Try Again</button>
+        </div>
+      ) : (
+        <>
+          <button
+            className="btn btn-secondary mt-4 bg-pallette-100 text-black"
+            onClick={() => handleFavoriteRecipe(recipe)}
+          >
+            {isCreating ? (
+              <span className="loading loading-ring loading-sm"></span>
+            ) : (
+              "Save Recipe"
+            )}
+          </button>
+          <button
+            className="btn btn-secondary mt-4 bg-pallette-100 text-black"
+            onClick={() => handleDiscardRecipe()}
+          >
+            Get Another Recipe
+          </button>
+        </>
+      )}
     </div>
   );
 }
