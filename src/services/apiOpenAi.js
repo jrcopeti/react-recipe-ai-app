@@ -6,7 +6,7 @@ const openai = new OpenAI({
 });
 
 const systemInstructions =
-  "You are an experienced chef who will provided recipe suggestion to normal people who wants to cook with ingredients they have at home"; // to be implemented
+  "You are an advanced recipe assistant designed to generate creative and suitable dinner ideas based on a set of user-specified criteria. Your task is to provide detailed and relevant dinner suggestions that align with the parameters provided in the user inputs.";
 
 const functionData = {
   name: "recipeData",
@@ -16,36 +16,71 @@ const functionData = {
     properties: {
       title: {
         type: "string",
-        description: "Title of the recipe",
+        description: "A creative and descriptive name for the recipe.",
+      },
+      description: {
+        type: "string",
+        description:
+          "A brief summary of the dish, highlighting key ingredients",
+      },
+      preparationTime: {
+        type: "string",
+        description:
+          "Total time required to prepare and cook the dish, in minutes or hours if necessary",
+      },
+      difficultyLevel: {
+        type: "string",
+        description:
+          "The level of difficulty in preparing the dish, such as easy, medium, or hard",
+      },
+      dietaryOptions: {
+        type: "array",
+        description: "Dietary options for the recipe",
+        items: {
+          type: "string",
+        },
       },
       ingredients: {
         type: "array",
-        description: "Ingredients of the recipe",
+        description:
+          "A list of ingredients required for the recipe, specifying which ingredients are from the user’s inventory and which might need to be added. Include common or flexible substitutions if needed.",
         items: {
           type: "string",
         },
       },
-      steps: {
+      instructions: {
         type: "array",
-        description: "Steps of the recipe",
+        description:
+          "Step-by-step preparation directions. Ensure clarity and ease of following, and include any shortcuts or time-saving tips if necessary.",
         items: {
           type: "string",
         },
+      },
+      servingSize: {
+        type: "string",
+        description:
+          "Indicate the number of servings this recipe provides based on the number of guests",
+      },
+      tips: {
+        type: "string",
+        description:
+          "Additional information, tips, or suggestions related to the recipe",
       },
     },
-    required: ["title", "ingredients", "steps"],
+
+    required: [
+      "title",
+      "description",
+      "preparationTime",
+      "ingredients",
+      "instructions",
+      "servingSize",
+    ],
   },
 };
 
-export const fetchResponseAI = async ({
-  setIsLoading,
-  setError,
-  setRecipe,
-  prompt,
-}) => {
+export const fetchResponseAi = async (prompt) => {
   try {
-    setIsLoading(true);
-    setError(null);
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
@@ -68,16 +103,9 @@ export const fetchResponseAI = async ({
     } else if (parsedData === undefined) {
       throw new Error("Recipe not found");
     } else {
-      setRecipe({
-        title: parsedData.title,
-        ingredients: parsedData.ingredients,
-        steps: parsedData.steps,
-      });
+      return parsedData;
     }
   } catch (error) {
     console.error("Error:", error);
-    setError(error);
-  } finally {
-    setIsLoading(false);
   }
 };

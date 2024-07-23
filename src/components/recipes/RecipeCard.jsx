@@ -1,6 +1,5 @@
-import React from "react";
-
-function RecipeCard({ recipe, onSaveFavorite }) {
+function RecipeCard({ recipe, handleFavoriteRecipe }) {
+  if (!recipe) return;
   return (
     <div className="border-pallette-200 bg-pallette-400 rounded-lg border p-6 shadow-lg">
       <h2 className="mb-2 text-3xl font-bold">{recipe.title}</h2>
@@ -12,7 +11,7 @@ function RecipeCard({ recipe, onSaveFavorite }) {
         <strong>Difficulty Level:</strong> {recipe.difficultyLevel}
       </p>
       <p>
-        <strong>Dietary Compliance:</strong> {recipe.dietaryCompliance}
+        <strong>Dietary Compliance:</strong> {recipe.dietaryOptions}
       </p>
       <h3 className="mb-2 mt-4 font-semibold">Ingredients:</h3>
       <ul className="mb-4 list-inside list-disc">
@@ -30,17 +29,11 @@ function RecipeCard({ recipe, onSaveFavorite }) {
         <strong>Serving Size:</strong> {recipe.servingSize}
       </p>
       <p>
-        <strong>Scaling Instructions:</strong> {recipe.scalingInstructions}
-      </p>
-      <p>
-        <strong>Serving Suggestions:</strong> {recipe.servingSuggestions}
-      </p>
-      <p>
-        <strong>Notes and Tips:</strong> {recipe.notesAndTips}
+        <strong>Notes and Tips:</strong> {recipe.tips}
       </p>
       <button
         className="bg-pallette-100 btn btn-secondary mt-4 text-black"
-        onClick={() => onSaveFavorite(recipe)}
+        onClick={() => handleFavoriteRecipe(recipe)}
       >
         Save to Favorites
       </button>
