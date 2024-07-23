@@ -1,9 +1,9 @@
 function RecipeCard({ recipe, handleFavoriteRecipe, handleDiscardRecipe }) {
   if (!recipe) return;
   return (
-    <div className="rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 font-normal text-pallette-500 shadow-xl">
+    <div className="border-pallette-50 bg-pallette-400 text-pallette-500 rounded-lg border-2 p-6 font-normal shadow-xl">
       <h2 className="mb-2 text-3xl font-bold">{recipe.title}</h2>
-      <p className="mb-4 text-pallette-500">{recipe.description}</p>
+      <p className="text-pallette-500 mb-4">{recipe.description}</p>
       <p>
         <strong>Preparation Time:</strong> {recipe.preparationTime}
       </p>
@@ -20,7 +20,7 @@ function RecipeCard({ recipe, handleFavoriteRecipe, handleDiscardRecipe }) {
         ))}
       </ul>
       <h3 className="mb-2 mt-4 font-semibold">Instructions:</h3>
-      <ol className="mb-4 list-inside list-decimal">
+      <ol className="mb-4 list-inside">
         {recipe.instructions.map((step, i) => (
           <li key={i}>{step}</li>
         ))}
@@ -32,13 +32,13 @@ function RecipeCard({ recipe, handleFavoriteRecipe, handleDiscardRecipe }) {
         <strong>Notes and Tips:</strong> {recipe.tips}
       </p>
       <button
-        className="border-pallette-600 hover:border-pallette-600 btn btn-secondary mt-4 bg-cyan-900 font-normal text-pallette-500 hover:bg-cyan-950"
+        className="border-pallette-50 bg-pallette-300 text-pallette-500 hover:border-pallette-50 hover:text-pallette-500 btn btn-primary border-2 font-normal hover:bg-cyan-900"
         onClick={() => handleFavoriteRecipe(recipe)}
       >
         Save to Favorites
       </button>
       <button
-        className="btn btn-secondary mt-4 bg-pallette-100 text-black"
+        className="border-pallette-50 bg-pallette-100 text-pallette-500 hover:border-pallette-50 hover:text-pallette-500 btn btn-secondary border-2 font-normal hover:bg-cyan-900"
         onClick={() => handleDiscardRecipe()}
       >
         Get Another Recipe
