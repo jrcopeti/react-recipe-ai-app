@@ -1,48 +1,245 @@
-import React from "react";
-
-const newRecipes = [
-  {
-    title: "Quick Veggie Stir-Fry",
-    description:
-      "A vibrant and speedy stir-fry using bell peppers, carrots, and tofu.",
-    preparationTime: "20 minutes",
-    difficultyLevel: "Easy",
-    dietaryCompliance: "Vegan and gluten-free",
-    ingredients: [
-      "1 red bell pepper, sliced",
-      "1 cup carrots, sliced",
-      "1 cup firm tofu, cubed",
-      "2 tablespoons gluten-free soy sauce",
-      "1 tablespoon olive oil",
-      "2 cloves garlic, minced",
-    ],
-    instructions: [
-      "Heat olive oil in a large skillet over medium heat.",
-      "Add garlic and sauté for 1 minute.",
-      "Add tofu cubes and cook until golden, about 5 minutes.",
-      "Add bell peppers and carrots, stir-frying for an additional 5 minutes.",
-      "Stir in soy sauce and cook for another 3 minutes.",
-      "Serve hot, garnished with sesame seeds if desired.",
-    ],
-    servingSize: "2 servings",
-    scalingInstructions:
-      "Adjust the ingredients proportionally for more servings.",
-    servingSuggestions: "Serve with steamed rice or noodles.",
-    notesAndTips: "You can add other vegetables like broccoli or snap peas.",
-  },
-];
-
-function RecipeForm({ handleGenerateRecipe }) {
+function RecipeForm({
+  handleGenerateRecipe,
+  handleIngredient1Input,
+  handleIngredient2Input,
+  handleIngredient3Input,
+  handleIngredient4Input,
+  handleIngredient5Input,
+  handleGuestsInput,
+  handleTimeInput,
+  handleDifficultyInput,
+  handleDietaryOptionsInput,
+  handleCuisineInput,
+  handleTypeOfMealInput,
+  ingredient1,
+  ingredient2,
+  ingredient3,
+  ingredient4,
+  ingredient5,
+  guests,
+  time,
+  difficulty,
+  dietaryOption,
+  cuisine,
+  typeOfMeal,
+}) {
   return (
-    <form onSubmit={handleGenerateRecipe} className="mb-8">
-      HERE GOES THE FORM
-      <button
-        type="submit"
-        className="bg-pallette-50 btn btn-primary text-black"
-      >
-        Generate Recipes
-      </button>
-    </form>
+    <>
+      <h1>I am a form to generate a recipe.</h1>
+
+      <form onSubmit={handleGenerateRecipe}>
+        <div>
+          <div>
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                What have you got left in your fridge and pantry? Choose up to
+                five incredients for your recipe.
+              </div>
+            </label>
+
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Incredient 1:</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient1}
+                onChange={handleIngredient1Input}
+                className="input input-bordered w-full max-w-xs"
+              />
+              <div className="label"></div>
+            </label>
+
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Incredient 2:</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient2}
+                onChange={handleIngredient2Input}
+                className="input input-bordered w-full max-w-xs"
+              />
+              <div className="label"></div>
+            </label>
+
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Incredient 3:</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient3}
+                onChange={handleIngredient3Input}
+                className="input input-bordered w-full max-w-xs"
+              />
+              <div className="label"></div>
+            </label>
+
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Incredient 4:</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient4}
+                onChange={handleIngredient4Input}
+                className="input input-bordered w-full max-w-xs"
+              />
+              <div className="label"></div>
+            </label>
+
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Incredient 5:</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient5}
+                onChange={handleIngredient5Input}
+                className="input input-bordered w-full max-w-xs"
+              />
+              <div className="label"></div>
+            </label>
+          </div>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">
+                Vegetarian, lactose intolerant? Choose an otption
+              </span>
+            </div>
+            <select
+              className="select select-bordered"
+              name="options"
+              onChange={handleDietaryOptionsInput}
+              value={dietaryOption}
+            >
+              <option value="none"> None </option>
+              <option value="pescetarian">Pescetarian</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="lactoseFree">Lactose Free</option>
+              <option value="gluten">Gluten Free</option>
+            </select>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">
+                How advanced are your cooking skills?
+              </span>
+            </div>
+            <select
+              className="select select-bordered"
+              name="difficulty"
+              onChange={handleDifficultyInput}
+              value={difficulty}
+            >
+              <option value="easy">Bloody Beginner</option>
+              <option value="medium">Hobby Cook</option>
+              <option value="hard">Chef</option>
+            </select>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">
+                Do you have a preferred cuisine?
+              </span>
+            </div>
+            <select
+              className="select select-bordered"
+              name="difficulty"
+              onChange={handleCuisineInput}
+              value={cuisine}
+            >
+              <option>Pick one</option>
+              <option value="asian">Asian</option>
+              <option value="mediterranean">Mediterranean</option>
+              <option value="fusion">Fusion</option>
+              <option value="spicy">Spicy</option>
+              <option value="sweet">Sweet</option>
+            </select>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">
+                How much time do you have for cooking?
+              </span>
+            </div>
+            <div className="w-full">
+              <input
+                type="range"
+                min={15}
+                max="90"
+                value={time}
+                className="range"
+                step="15"
+                onChange={handleTimeInput}
+              />
+              <div className="flex w-full justify-between px-2 text-xs">
+                <span>{time === 15}</span>
+                <span>{time === 30}</span>
+                <span>{time === 45}</span>
+                <span>{time === 60}</span>
+                <span>{time === 75}</span>
+                <span>{time === 90}</span>
+              </div>
+              <div className="mt-2 text-center">{time} Minutes</div>
+            </div>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">What type of meal?</span>
+            </div>
+            <select
+              className="select select-bordered"
+              name="difficulty"
+              onChange={handleTypeOfMealInput}
+              value={typeOfMeal}
+            >
+              <option>Pick one</option>
+              <option value="starter">Starter</option>
+              <option value="main-course">Main Course</option>
+              <option value="dessert">Dessert</option>
+              <option value="snack">Snack</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+            </select>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">
+                For how many people do you like to cook?
+              </span>
+            </div>
+            <input
+              type="number"
+              placeholder="2"
+              value={guests}
+              onChange={handleGuestsInput}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="label"></div>
+          </label>
+          <label className="form-control w-full max-w-xs">
+            <button className="btn" type="submit">
+              Generate Recipe
+            </button>
+          </label>
+        </div>
+      </form>
+    </>
   );
 }
 

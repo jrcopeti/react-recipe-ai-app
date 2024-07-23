@@ -19,7 +19,7 @@ function useFetchRecipeAi() {
     }
   };
 
-  return { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi };
+  return { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi, setRecipe };
 }
 
 export { useFetchRecipeAi };
