@@ -1,33 +1,68 @@
-function RecipeForm({
-  handleGenerateRecipe,
-  handleIngredient1Input,
-  handleIngredient2Input,
-  handleIngredient3Input,
-  handleIngredient4Input,
-  handleIngredient5Input,
-  handleGuestsInput,
-  handleTimeInput,
-  handleDifficultyInput,
-  handleDietaryOptionsInput,
-  handleCuisineInput,
-  handleTypeOfMealInput,
-  ingredient1,
-  ingredient2,
-  ingredient3,
-  ingredient4,
-  ingredient5,
-  guests,
-  time,
-  difficulty,
-  dietaryOption,
-  cuisine,
-  typeOfMeal,
-}) {
+import { useState } from "react";
+
+export default function GenerateRecipe() {
+  const [incredient1, setIncredient1] = useState("");
+  const [incredient2, setIncredient2] = useState("");
+  const [incredient3, setIncredient3] = useState("");
+  const [incredient4, setIncredient4] = useState("");
+  const [incredient5, setIncredient5] = useState("");
+  const [time, setTime] = useState(15);
+  const [options, setOptions] = useState("none");
+  // const [intolerance, setIntolerance] = useState("none");
+  const [difficulty, setDifficulty] = useState("easy");
+  const [type, setType] = useState("none");
+  const [guests, setGuests] = useState(2);
+
+  const handleIncredient1Input = (e) => setIncredient1(e.target.value);
+  const handleIncredient2Input = (e) => setIncredient2(e.target.value);
+  const handleIncredient3Input = (e) => setIncredient3(e.target.value);
+  const handleIncredient4Input = (e) => setIncredient4(e.target.value);
+  const handleIncredient5Input = (e) => setIncredient5(e.target.value);
+  const handleTimeInput = (e) => setTime(e.target.value);
+  const handleOptionsInput = (e) => setOptions(e.target.value);
+  // const handleIntoleranceInput = (e) => setIntolerance(e.target.value);
+  const handleDifficultyInput = (e) => setDifficulty(e.target.value);
+  const handleTypeInput = (e) => setType(e.target.value);
+  const handleGuestsInput = (e) => setGuests(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newRecipe = {
+      incredient1,
+      incredient2,
+      incredient3,
+      incredient4,
+      incredient5,
+      time,
+      options,
+      // intolerance,
+      difficulty,
+      type,
+      guests,
+    };
+
+    // setRecipes([...receipes, newRecipe]);
+    console.log("Submitted: ", newRecipe);
+
+    // Reset the state
+    setIncredient1("");
+    setIncredient2("");
+    setIncredient3("");
+    setIncredient4("");
+    setIncredient5("");
+    setTime(15);
+    setOptions("");
+    setDifficulty("easy");
+    setType("none");
+    setGuests(2);
+  };
+
   return (
     <>
       <h1>I am a form to generate a recipe.</h1>
 
-      <form onSubmit={handleGenerateRecipe}>
+      <form onSubmit={handleSubmit}>
         <div>
           <div>
             <label className="form-control w-full max-w-xs">
@@ -44,8 +79,8 @@ function RecipeForm({
               <input
                 type="text"
                 placeholder="Type here"
-                value={ingredient1}
-                onChange={handleIngredient1Input}
+                value={incredient1}
+                onChange={handleIncredient1Input}
                 className="input input-bordered w-full max-w-xs"
               />
               <div className="label"></div>
@@ -58,8 +93,8 @@ function RecipeForm({
               <input
                 type="text"
                 placeholder="Type here"
-                value={ingredient2}
-                onChange={handleIngredient2Input}
+                value={incredient2}
+                onChange={handleIncredient2Input}
                 className="input input-bordered w-full max-w-xs"
               />
               <div className="label"></div>
@@ -72,8 +107,8 @@ function RecipeForm({
               <input
                 type="text"
                 placeholder="Type here"
-                value={ingredient3}
-                onChange={handleIngredient3Input}
+                value={incredient3}
+                onChange={handleIncredient3Input}
                 className="input input-bordered w-full max-w-xs"
               />
               <div className="label"></div>
@@ -86,8 +121,8 @@ function RecipeForm({
               <input
                 type="text"
                 placeholder="Type here"
-                value={ingredient4}
-                onChange={handleIngredient4Input}
+                value={incredient4}
+                onChange={handleIncredient4Input}
                 className="input input-bordered w-full max-w-xs"
               />
               <div className="label"></div>
@@ -100,8 +135,8 @@ function RecipeForm({
               <input
                 type="text"
                 placeholder="Type here"
-                value={ingredient5}
-                onChange={handleIngredient5Input}
+                value={incredient5}
+                onChange={handleIncredient5Input}
                 className="input input-bordered w-full max-w-xs"
               />
               <div className="label"></div>
@@ -110,15 +145,13 @@ function RecipeForm({
 
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">
-                Vegetarian, lactose intolerant? Choose an otption
-              </span>
+              <span className="label-text">Vegetarian, lactose intolerant? Choose an otption</span>
             </div>
             <select
               className="select select-bordered"
               name="options"
-              onChange={handleDietaryOptionsInput}
-              value={dietaryOption}
+              onChange={handleOptionsInput}
+              value={options}
             >
               <option value="none"> None </option>
               <option value="pescetarian">Pescetarian</option>
@@ -128,6 +161,23 @@ function RecipeForm({
               <option value="gluten">Gluten Free</option>
             </select>
           </label>
+
+          {/* <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Any known food intolerance?</span>
+            </div>
+            <select
+              className="select select-bordered"
+              name="intolerance"
+              onChange={handleIntoleranceInput}
+              value={intolerance}
+            >
+              <option value="none"> None </option>
+              <option value="lactose">Lactose</option>
+              <option value="gluten">Gluten</option>
+              <option value="salicyclates">Salicylates </option>
+            </select>
+          </label> */}
 
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -150,14 +200,14 @@ function RecipeForm({
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text">
-                Do you have a preferred cuisine?
+                Do you have a preferred type or style of cooking?
               </span>
             </div>
             <select
               className="select select-bordered"
               name="difficulty"
-              onChange={handleCuisineInput}
-              value={cuisine}
+              onChange={handleTypeInput}
+              value={type}
             >
               <option>Pick one</option>
               <option value="asian">Asian</option>
@@ -194,43 +244,22 @@ function RecipeForm({
               </div>
               <div className="mt-2 text-center">{time} Minutes</div>
             </div>
-          </label>
 
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">What type of meal?</span>
-            </div>
-            <select
-              className="select select-bordered"
-              name="difficulty"
-              onChange={handleTypeOfMealInput}
-              value={typeOfMeal}
-            >
-              <option>Pick one</option>
-              <option value="starter">Starter</option>
-              <option value="main-course">Main Course</option>
-              <option value="dessert">Dessert</option>
-              <option value="snack">Snack</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-            </select>
-          </label>
-
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">
-                For how many people do you like to cook?
-              </span>
-            </div>
-            <input
-              type="number"
-              placeholder="2"
-              value={guests}
-              onChange={handleGuestsInput}
-              className="input input-bordered w-full max-w-xs"
-            />
-            <div className="label"></div>
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">
+                  For how many people do you like to cook?
+                </span>
+              </div>
+              <input
+                type="number"
+                placeholder="2"
+                value={guests}
+                onChange={handleGuestsInput}
+                className="input input-bordered w-full max-w-xs"
+              />
+              <div className="label"></div>
+            </label>
           </label>
           <label className="form-control w-full max-w-xs">
             <button className="btn" type="submit">
@@ -242,5 +271,3 @@ function RecipeForm({
     </>
   );
 }
-
-export default RecipeForm;

@@ -1,4 +1,4 @@
-function RecipeCard({ recipe, handleFavoriteRecipe }) {
+function RecipeCard({ recipe, handleFavoriteRecipe, handleDiscardRecipe }) {
   if (!recipe) return;
   return (
     <div className="rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 font-normal text-pallette-500 shadow-xl">
@@ -36,6 +36,12 @@ function RecipeCard({ recipe, handleFavoriteRecipe }) {
         onClick={() => handleFavoriteRecipe(recipe)}
       >
         Save to Favorites
+      </button>
+      <button
+        className="btn btn-secondary mt-4 bg-pallette-100 text-black"
+        onClick={() => handleDiscardRecipe()}
+      >
+        Get Another Recipe
       </button>
     </div>
   );
