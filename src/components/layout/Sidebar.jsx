@@ -1,3 +1,4 @@
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
 const links = [
@@ -7,9 +8,14 @@ const links = [
   { to: "/about", label: "About" },
 ];
 
-function Sidebar() {
+const Sidebar = forwardRef(({ isOpen }, ref) => {
   return (
-    <aside className="w-64 border-2 border-pallette-50 bg-pallette-300 p-4 text-4xl text-pallette-500">
+    <aside
+      ref={ref}
+      className={`fixed left-0 h-screen w-64 transform border-2 border-pallette-50 bg-pallette-300 p-4 text-4xl text-pallette-500 transition-transform ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } `}
+    >
       <ul>
         {links.map((link) => (
           <li key={link.label}>
@@ -19,6 +25,6 @@ function Sidebar() {
       </ul>
     </aside>
   );
-}
+});
 
 export default Sidebar;

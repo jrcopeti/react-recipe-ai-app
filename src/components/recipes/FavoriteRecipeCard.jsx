@@ -48,7 +48,7 @@ function FavoriteRecipeCard() {
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
       <button
-        className="hover:bg-pallette-600 btn btn-secondary bg-pallette-400 text-cyan-950"
+        className="btn btn-secondary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
         onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
       >
         Remove from Favorites

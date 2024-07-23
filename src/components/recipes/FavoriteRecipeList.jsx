@@ -23,13 +23,13 @@ function FavoriteRecipesList() {
             <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
             <Link to={`/recipes/${recipe.id}`}>
-              <button className="border-pallette-600 hover:border-pallette-600 btn btn-primary bg-pallette-300 font-normal text-pallette-500 hover:bg-cyan-900 hover:text-pallette-500">
+              <button className="btn btn-primary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500">
                 View Recipe
               </button>
             </Link>
 
             <button
-              className="border-pallette-600 hover:border-pallette-600 btn btn-secondary bg-pallette-400 font-normal text-pallette-500 hover:bg-cyan-900 hover:text-pallette-500"
+              className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
               onClick={() => handleDeleteRecipe(recipe.id)}
             >
               Remove from Favorites
