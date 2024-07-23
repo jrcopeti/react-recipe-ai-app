@@ -17,7 +17,7 @@ function FavoriteRecipeCard() {
   console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
   if (!favoriteRecipe) return;
   return (
-    <div className="border-pallette-200 bg-pallette-400 rounded-lg border p-6 shadow-lg">
+    <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
       <h2 className="mb-2 text-3xl font-bold">{favoriteRecipe.title}</h2>
       <p className="mb-4 text-cyan-950">{favoriteRecipe.description}</p>
       <p>
@@ -48,7 +48,7 @@ function FavoriteRecipeCard() {
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
       <button
-        className="btn btn-secondary"
+        className="hover:bg-pallette-600 btn btn-secondary bg-pallette-400 text-cyan-950"
         onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
       >
         Remove from Favorites

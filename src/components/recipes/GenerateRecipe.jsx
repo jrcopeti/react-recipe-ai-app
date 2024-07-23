@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FavoriteRecipes from "./FavoriteRecipeCard";
 import RecipeForm from "./RecipeForm";
-import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAi";
+import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAI";
 import RecipeCard from "./RecipeCard";
 import { useCreateRecipe } from "../../hooks/useCreateRecipe";
 

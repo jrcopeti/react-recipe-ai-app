@@ -9,7 +9,7 @@ const links = [
 
 function Sidebar() {
   return (
-    <aside className="bg-pallette-300 w-64 p-4 text-cyan-950">
+    <aside className="w-64 border-2 border-pallette-50 bg-pallette-300 p-4 text-4xl text-pallette-500">
       <ul>
         {links.map((link) => (
           <li key={link.label}>

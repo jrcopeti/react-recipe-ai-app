@@ -34,11 +34,11 @@ const newRecipes = [
 
 function RecipeForm({ handleGenerateRecipe }) {
   return (
-    <form onSubmit={handleGenerateRecipe} className="mb-8">
+    <form onSubmit={handleGenerateRecipe} className="mb-8 text-2xl">
       HERE GOES THE FORM
       <button
         type="submit"
-        className="bg-pallette-50 btn btn-primary text-black"
+        className="hover:bg-pallette-600 btn btn-primary border-2 border-pallette-50 bg-cyan-900 align-middle font-normal text-pallette-500 hover:border-2 hover:border-pallette-50"
       >
         Generate Recipes
       </button>
