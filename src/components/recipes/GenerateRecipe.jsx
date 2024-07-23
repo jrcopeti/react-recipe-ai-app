@@ -1,5 +1,5 @@
 import RecipeForm from "./RecipeForm";
-import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAI";
+import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAi";
 import RecipeCard from "./RecipeCard";
 import { useCreateRecipe } from "../../hooks/useCreateRecipe";
 import { useState } from "react";
