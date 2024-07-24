@@ -6,11 +6,11 @@ function About() {
           About Dinner Generator
         </h1>
         <p className="mb-12 text-balance text-2xl font-normal text-cyan-950">
-          Welcome to DinnerCraft, your personal recipe assistant! Our app helps
-          you transform the ingredients you already have into delightful dinner
-          ideas. Simply enter up to five items from your fridge, and let our AI,
-          powered by ChatGPT, suggest creative and suitable recipes tailored to
-          your preferences and dietary needs.
+          Welcome to the Dinner Generator, your personal recipe assistant! Our
+          app helps you transform the ingredients you already have into
+          delightful dinner ideas. Simply enter up to five items from your
+          fridge, and let our AI, powered by ChatGPT, suggest creative and
+          suitable recipes tailored to your preferences and dietary needs.
         </p>
         <h2 className="mb-8 text-4xl font-bold text-cyan-950">Key Features</h2>
         <ul className="mb-12 list-inside list-disc text-center text-2xl font-normal text-cyan-950">
@@ -34,7 +34,7 @@ function About() {
         </ul>
         <h2 className="mb-8 text-4xl font-bold text-cyan-950">
           Join us on a culinary adventure and never wonder what’s for dinner
-          again with DinnerCraft!
+          again with Dinner Generator!
         </h2>
       </div>
     </div>

@@ -5,7 +5,7 @@ function Home() {
     <div className="m-0 flex min-h-full items-center justify-center">
       <div className="max-w-5xl p-4 text-center">
         <h1 className="mb-8 text-6xl font-bold text-pallette-50">
-          Welcome to the DinnerCraft
+          Welcome to the Dinner Generator
         </h1>
         <p className="mb-12 text-balance text-4xl font-normal text-pallette-50">
           Struggling to figure out what's for dinner? Simply enter the

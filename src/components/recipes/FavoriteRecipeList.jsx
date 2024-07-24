@@ -72,7 +72,7 @@ function FavoriteRecipesList() {
             className="flex flex-col items-center justify-center gap-2"
             key={recipe.id}
           >
-            <h3>{recipe.title}</h3>
+            <h3 className="text-3xl font-bold">{recipe.title} </h3>
             <p>{recipe.description}</p>
 
             {deletedRecipeIds.includes(recipe.id) && (
