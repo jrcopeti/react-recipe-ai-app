@@ -19,15 +19,13 @@ function GenerateRecipe() {
 
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi, setRecipe } =
     useFetchRecipeAi();
-  const { createRecipe } = useCreateRecipe();
+  const {
+    createRecipe,
+    isLoading: isCreating,
+    errorCreating,
+    setErrorCreating,
+  } = useCreateRecipe();
   console.log(recipe);
-
-  // const ingredients = "broccoli, rice, garlic";
-  // const numberGuests = 2;
-  // const dietaryOptionsHardcoded = "gluten-free";
-  // const cuisineHardcoded = "mediterranean";
-  // const flavorProfile = "";
-  // const timeHardcoded = 60;
 
   const handleIngredient1Input = (e) => setIngredient1(e.target.value);
   const handleIngredient2Input = (e) => setIngredient2(e.target.value);
@@ -77,10 +75,18 @@ function GenerateRecipe() {
     console.log("recipe generated");
   };
 
-  const handleFavoriteRecipe = (recipe) => {
-    console.log("recipe saved", recipe);
-    createRecipe(recipe);
-    setRecipe(null);
+  const handleFavoriteRecipe = async (recipe) => {
+    const newRecipe = {
+      ...recipe,
+      reviews: [],
+    };
+    try {
+      await createRecipe(newRecipe);
+      console.log("recipe saved----------------", recipe);
+      setRecipe(null);
+    } catch (error) {
+      console.error("Error saving recipe", error);
+    }
   };
 
   const handleDiscardRecipe = () => {
@@ -88,14 +94,20 @@ function GenerateRecipe() {
   };
 
   if (isLoadingRecipeAi)
-    return <span className="loading loading-spinner loading-lg"></span>;
+    return <span className="loading loading-ring loading-lg"></span>;
 
-  if (errorAi) return <p>Error: {errorAi.message}</p>;
+  if (errorAi)
+    return (
+      <div className="flex w-full flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+        <p>There was an error in generating a recipe</p>
+        <button onClick={() => window.location.reload()}>Try Again</button>
+      </div>
+    );
 
   return (
     <>
       <div>
-        {!recipe ? (
+        {!recipe && !errorAi ? (
           <RecipeForm
             handleGenerateRecipe={handleGenerateRecipe}
             handleIngredient1Input={handleIngredient1Input}
@@ -126,6 +138,9 @@ function GenerateRecipe() {
             recipe={recipe}
             handleFavoriteRecipe={handleFavoriteRecipe}
             handleDiscardRecipe={handleDiscardRecipe}
+            isCreating={isCreating}
+            errorCreating={errorCreating}
+            setErrorCreating={setErrorCreating}
           />
         )}
       </div>

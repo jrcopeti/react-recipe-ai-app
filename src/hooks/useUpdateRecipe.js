@@ -1,25 +1,27 @@
 import { useState } from "react";
 import { updateRecipe as updateRecipeApi } from "../services/apiRecipes";
 
-function useUpdateRecipe() {
+function useUpdateRecipe(refetchRecipe) {
   const [updatedRecipe, setUpdatedRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [errorUpdate, setErrorUpdate] = useState(null);
 
   const updateRecipe = async (id, recipe) => {
     setIsLoading(true);
-    setError(null);
+    setErrorUpdate(null);
     try {
       const data = await updateRecipeApi(id, recipe);
       setUpdatedRecipe(data);
+      if (refetchRecipe) refetchRecipe();
     } catch (error) {
-      setError(error);
+      console.log("error in the hook", error);
+      setErrorUpdate(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { updatedRecipe, isLoading, error, updateRecipe };
+  return { updatedRecipe, isLoading, errorUpdate, updateRecipe };
 }
 
 export { useUpdateRecipe };
