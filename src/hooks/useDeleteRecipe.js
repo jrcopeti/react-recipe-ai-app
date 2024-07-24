@@ -10,7 +10,7 @@ function useDeleteRecipe(refetchRecipes) {
     setErrorDeleting(null);
     try {
       await deleteRecipeApi(recipe);
-      refetchRecipes();
+      if (refetchRecipes) refetchRecipes();
     } catch (error) {
       setErrorDeleting(error);
     } finally {
