@@ -3,6 +3,7 @@ import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAi";
 import RecipeCard from "./RecipeCard";
 import { useCreateRecipe } from "../../hooks/useCreateRecipe";
 import { useEffect, useState } from "react";
+import { useImage } from "../../hooks/useImage";
 
 function GenerateRecipe() {
   const [ingredient1, setIngredient1] = useState("");
@@ -18,7 +19,8 @@ function GenerateRecipe() {
   const [typeOfMeal, setTypeOfMeal] = useState("");
 
   const [isSaved, setIsSaved] = useState(false);
-  const [showSavedMessage, setShowSavedMessage] = useState(false);
+
+  const [query, setQuery] = useState("");
 
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi, setRecipe } =
     useFetchRecipeAi();
@@ -28,7 +30,15 @@ function GenerateRecipe() {
     errorCreating,
     setErrorCreating,
   } = useCreateRecipe();
-  console.log(recipe);
+
+  const { image, getImage } = useImage(recipe);
+
+
+
+  console.log("image", image);
+
+
+  // console.log("image", image);
 
   useEffect(() => {
     let timer;
@@ -169,6 +179,7 @@ function GenerateRecipe() {
             isCreating={isCreating}
             errorCreating={errorCreating}
             setErrorCreating={setErrorCreating}
+            image={image}
           />
         )}
       </div>

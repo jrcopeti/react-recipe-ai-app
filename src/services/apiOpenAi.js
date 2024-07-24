@@ -66,6 +66,11 @@ const functionData = {
         description:
           "Additional information, tips, or suggestions related to the recipe",
       },
+      query: {
+        type: "string",
+        description:
+          "One or two maximum key word that can be used as query to the Unsplash API to get an image related to the recipe",
+      },
     },
 
     required: [
@@ -75,6 +80,8 @@ const functionData = {
       "ingredients",
       "instructions",
       "servingSize",
+      "tips",
+      "query",
     ],
   },
 };
