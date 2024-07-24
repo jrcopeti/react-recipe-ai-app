@@ -19,7 +19,7 @@ function FavoriteRecipeCard() {
     isLoading: isUpdating,
     errorUpdate,
   } = useUpdateRecipe(getRecipeById);
-  
+
   const { deleteRecipe } = useDeleteRecipe();
 
   console.log(" smnjsns", errorUpdate);
@@ -57,14 +57,14 @@ function FavoriteRecipeCard() {
 
   if (!favoriteRecipe)
     return (
-      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
         <p>No Recipe was found here...</p>
       </div>
     );
 
   if (errorRecipeById)
     return (
-      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
         <p>Error: {errorRecipeById.message}</p>
         <Link to="/">
           <button>Back to Home</button>
@@ -72,7 +72,7 @@ function FavoriteRecipeCard() {
       </div>
     );
   return (
-    <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+    <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
       <h2 className="mb-2 text-3xl font-bold">{favoriteRecipe.title}</h2>
       <p className="mb-4 text-cyan-950">{favoriteRecipe.description}</p>
       <p>
@@ -103,7 +103,6 @@ function FavoriteRecipeCard() {
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
 
-
       <section>
         <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
         {favoriteRecipe.reviews.map((review, i) => (
@@ -119,12 +118,15 @@ function FavoriteRecipeCard() {
       {!isReviewing ? (
         <>
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
             onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
           >
             Remove from Favorites
           </button>
-          <button className="btn btn-primary" onClick={() => toggleReview()}>
+          <button
+            className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+            onClick={() => toggleReview()}
+          >
             Review Recipe
           </button>
         </>
@@ -134,7 +136,7 @@ function FavoriteRecipeCard() {
             <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
               <p>There was an error in creating a review. </p>
               <button
-                className="btn btn-secondary"
+                className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
                 onClick={() => window.location.reload()}
               >
                 Try Again
@@ -148,7 +150,7 @@ function FavoriteRecipeCard() {
               <select
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
-                className="w-20 rounded-lg border border-pallette-200 p-2"
+                className="m-2 w-20 rounded-lg border-2 border-pallette-50 p-2"
               >
                 <option>1</option>
                 <option>2</option>
@@ -157,7 +159,7 @@ function FavoriteRecipeCard() {
                 <option>5</option>
               </select>
               <input
-                className="w-full rounded-lg border border-pallette-200 p-2"
+                className="m-2 w-full rounded-lg border-2 border-pallette-50 p-2"
                 placeholder="Write your review here..."
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
@@ -166,7 +168,7 @@ function FavoriteRecipeCard() {
 
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
                 disabled={isUpdating}
               >
                 {isUpdating ? (
@@ -179,14 +181,6 @@ function FavoriteRecipeCard() {
           )}
         </>
       )}
-
-      <button
-        className="btn btn-secondary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
-        onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
-      >
-        Remove from Favorites
-      </button>
-
     </div>
   );
 }

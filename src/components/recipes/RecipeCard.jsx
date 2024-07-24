@@ -9,9 +9,9 @@ function RecipeCard({
   if (!recipe) return;
 
   return (
-    <div className="border-pallette-50 bg-pallette-400 text-pallette-500 rounded-lg border-2 p-6 font-normal shadow-xl">
+    <div className="rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 font-normal text-pallette-500 shadow-xl">
       <h2 className="mb-2 text-3xl font-bold">{recipe.title}</h2>
-      <p className="text-pallette-500 mb-4">{recipe.description}</p>
+      <p className="mb-4 text-pallette-500">{recipe.description}</p>
       <p>
         <strong>Preparation Time:</strong> {recipe.preparationTime}
       </p>
@@ -40,16 +40,15 @@ function RecipeCard({
         <strong>Notes and Tips:</strong> {recipe.tips}
       </p>
 
-
       {errorCreating ? (
-        <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+        <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
           <p>There was an error in saving the recipe.</p>
           <button onClick={() => setErrorCreating(null)}>Try Again</button>
         </div>
       ) : (
         <>
           <button
-            className="btn btn-secondary mt-4 bg-pallette-100 text-black"
+            className="btn btn-secondary mt-4 bg-pallette-100 text-black shadow-md shadow-zinc-500"
             onClick={() => handleFavoriteRecipe(recipe)}
             disabled={isCreating}
           >
@@ -60,7 +59,7 @@ function RecipeCard({
             )}
           </button>
           <button
-            className="btn btn-secondary mt-4 bg-pallette-100 text-black"
+            className="btn btn-secondary mt-4 bg-pallette-100 text-black shadow-md shadow-zinc-500"
             onClick={() => handleDiscardRecipe()}
             disabled={isCreating}
           >
@@ -70,18 +69,17 @@ function RecipeCard({
       )}
 
       <button
-        className="border-pallette-50 bg-pallette-300 text-pallette-500 hover:border-pallette-50 hover:text-pallette-500 btn btn-primary border-2 font-normal hover:bg-cyan-900"
+        className="btn btn-primary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
         onClick={() => handleFavoriteRecipe(recipe)}
       >
         Save to Favorites
       </button>
       <button
-        className="border-pallette-50 bg-pallette-100 text-pallette-500 hover:border-pallette-50 hover:text-pallette-500 btn btn-secondary border-2 font-normal hover:bg-cyan-900"
+        className="btn btn-secondary border-2 border-pallette-50 bg-pallette-100 font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
         onClick={() => handleDiscardRecipe()}
       >
         Get Another Recipe
       </button>
-
     </div>
   );
 }

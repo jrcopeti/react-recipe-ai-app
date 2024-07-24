@@ -3,7 +3,7 @@ import React from "react";
 function Navbar({ toggleSidebar }) {
   return (
     <nav className="sticky top-0 z-10 flex items-center justify-between border-2 border-pallette-50 bg-pallette-400 p-4 text-pallette-500">
-      <h1 className="flex-grow text-center text-4xl">Dinner Generator</h1>
+      <h1 className="flex-grow text-center text-6xl">DinnerCraft</h1>
       <button className="px-5 py-2" onClick={toggleSidebar}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
