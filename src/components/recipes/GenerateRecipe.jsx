@@ -2,7 +2,7 @@ import RecipeForm from "./RecipeForm";
 import { useFetchRecipeAi } from "../../hooks/useFetchRecipeAi";
 import RecipeCard from "./RecipeCard";
 import { useCreateRecipe } from "../../hooks/useCreateRecipe";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function GenerateRecipe() {
   const [ingredient1, setIngredient1] = useState("");
@@ -17,6 +17,9 @@ function GenerateRecipe() {
   const [cuisine, setCuisine] = useState("");
   const [typeOfMeal, setTypeOfMeal] = useState("");
 
+  const [isSaved, setIsSaved] = useState(false);
+  const [showSavedMessage, setShowSavedMessage] = useState(false);
+
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi, setRecipe } =
     useFetchRecipeAi();
   const {
@@ -26,6 +29,17 @@ function GenerateRecipe() {
     setErrorCreating,
   } = useCreateRecipe();
   console.log(recipe);
+
+  useEffect(() => {
+    let timer;
+    if (isSaved) {
+      timer = setTimeout(() => {
+        setIsSaved(false);
+      }, 5000);
+    }
+
+    return () => clearTimeout(timer);
+  }, [isSaved]);
 
   const handleIngredient1Input = (e) => setIngredient1(e.target.value);
   const handleIngredient2Input = (e) => setIngredient2(e.target.value);
@@ -83,6 +97,11 @@ function GenerateRecipe() {
     try {
       await createRecipe(newRecipe);
       console.log("recipe saved----------------", recipe);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setIsSaved(true);
       setRecipe(null);
     } catch (error) {
       console.error("Error saving recipe", error);
@@ -90,6 +109,10 @@ function GenerateRecipe() {
   };
 
   const handleDiscardRecipe = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     setRecipe(null);
   };
 
@@ -107,6 +130,11 @@ function GenerateRecipe() {
   return (
     <>
       <div>
+        {isSaved && (
+          <div className="absolute right-[60px] top-6 flex w-fit transform flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+            <p>Recipe saved successfully!</p>
+          </div>
+        )}
         {!recipe && !errorAi ? (
           <RecipeForm
             handleGenerateRecipe={handleGenerateRecipe}

@@ -1,5 +1,3 @@
-import React from "react";
-
 function Footer() {
   return (
     <footer className="mt-auto border-2 border-pallette-50 bg-pallette-400 p-4 text-center text-pallette-500">

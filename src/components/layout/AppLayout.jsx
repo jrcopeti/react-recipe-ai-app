@@ -36,7 +36,7 @@ function AppLayout() {
       <Navbar ref={navbarRef} toggleSidebar={toggleSidebar} />
       <div className="relative flex flex-grow">
         <Sidebar ref={sidebarRef} isOpen={isSidebarOpen} />
-        <main className="flex-grow border-2 border-pallette-50 bg-pallette-200 p-6 text-center text-2xl text-cyan-950">
+        <main className="flex-grow border-2 border-pallette-50 bg-pallette-200 text-center text-2xl text-cyan-950">
           <Outlet />
         </main>
       </div>

@@ -1,8 +1,8 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 const Navbar = forwardRef(({ toggleSidebar }, ref) => {
   return (
-    <nav ref={ref} className="sticky top-0 z-10 flex items-center justify-between border-2 border-pallette-50 bg-pallette-400 p-4 text-pallette-500">
+    <nav ref={ref} className="sticky top-0 z-50 flex items-center justify-between border-2 border-pallette-50 bg-pallette-400 p-4 text-pallette-500">
       <h1 className="flex-grow text-center text-4xl">Dinner Generator</h1>
       <button className="px-5 py-2" onClick={toggleSidebar}>
         <svg
