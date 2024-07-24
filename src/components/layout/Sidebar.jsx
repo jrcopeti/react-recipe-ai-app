@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
 const links = [
@@ -12,10 +12,9 @@ const Sidebar = forwardRef(({ isOpen }, ref) => {
   return (
     <aside
       ref={ref}
-      className={`fixed left-0 top-16 w-full transform border-2 border-pallette-50 bg-pallette-300 p-4 text-center text-7xl text-pallette-500 transition-transform ${
-        isOpen ? "translate-y-0" : "-translate-y-full"
+      className={`fixed left-0 z-50 w-full transform border-2 border-pallette-50 bg-pallette-300 p-4 text-center text-7xl text-pallette-500 transition-transform ${
+        isOpen ? "top-16 translate-y-0" : "top-0 -translate-y-[100%]"
       }`}
-      style={{ zIndex: 5 }} // Ensure sidebar appears above the main content
     >
       <ul>
         {links.map((link) => (
@@ -27,5 +26,7 @@ const Sidebar = forwardRef(({ isOpen }, ref) => {
     </aside>
   );
 });
+
+Sidebar.displayName = "Sidebar";
 
 export default Sidebar;
