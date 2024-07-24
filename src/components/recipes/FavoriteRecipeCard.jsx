@@ -12,6 +12,7 @@ function FavoriteRecipeCard() {
     recipe: favoriteRecipe,
     getRecipeById,
     errorRecipeById,
+    isLoading,
   } = useGetRecipeById(recipeId);
 
   const {
@@ -19,7 +20,7 @@ function FavoriteRecipeCard() {
     isLoading: isUpdating,
     errorUpdate,
   } = useUpdateRecipe(getRecipeById);
-  
+
   const { deleteRecipe } = useDeleteRecipe();
 
   console.log(" smnjsns", errorUpdate);
@@ -28,6 +29,13 @@ function FavoriteRecipeCard() {
   const [isReviewing, setIsReviewing] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+
+  if (isLoading)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
 
   const handleDeleteRecipe = (id) => {
     console.log("Recipe deleted in Favorite recipes list", id);
@@ -55,7 +63,7 @@ function FavoriteRecipeCard() {
     updateRecipe(favoriteRecipe.id, updatedRecipe);
   };
 
-  if (!favoriteRecipe)
+  if (!isLoading && !favoriteRecipe)
     return (
       <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
         <p>No Recipe was found here...</p>
@@ -102,7 +110,6 @@ function FavoriteRecipeCard() {
       <p>
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
-
 
       <section>
         <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
@@ -186,7 +193,6 @@ function FavoriteRecipeCard() {
       >
         Remove from Favorites
       </button>
-
     </div>
   );
 }
