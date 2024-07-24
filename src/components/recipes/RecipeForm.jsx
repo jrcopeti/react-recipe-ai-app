@@ -27,7 +27,7 @@ function RecipeForm({
     <>
       <form onSubmit={handleGenerateRecipe}>
 
-        <div>
+        
           <div>
             <label className="form-control w-full max-w-xs">
               <div className="label">
