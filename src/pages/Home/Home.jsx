@@ -14,7 +14,7 @@ function Home() {
           preferences. Save your favorite recipes and enjoy hassle-free cooking!
         </p>
         <Link to="/generate-recipe">
-          <button className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-zinc-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500">
+          <button className="animate-bounce rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-zinc-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500">
             Get a recipe
           </button>
         </Link>
