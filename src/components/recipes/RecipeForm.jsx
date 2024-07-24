@@ -4,7 +4,6 @@ function RecipeForm({
   handleIngredient2Input,
   handleIngredient3Input,
   handleIngredient4Input,
-  handleIngredient5Input,
   handleGuestsInput,
   handleTimeInput,
   handleDifficultyInput,
@@ -15,7 +14,6 @@ function RecipeForm({
   ingredient2,
   ingredient3,
   ingredient4,
-  ingredient5,
   guests,
   time,
   difficulty,
@@ -25,19 +23,20 @@ function RecipeForm({
 }) {
   return (
     <>
+
       <form onSubmit={handleGenerateRecipe}>
 
-        <div className="m-[10px] flex flex-col items-center justify-start">
+        <div className="flex w-full max-w-4xl flex-col items-center space-y-6 md:space-y-8 lg:space-y-10">
           <label className="form-control w-full max-w-lg text-4xl font-medium">
 
-            <div className="label">
+            <div className="label text-center">
               What have you got left in your fridge and pantry? Choose up to
               five ingredients for your recipe.
             </div>
           </label>
 
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
+          <label className="form-control mx-auto w-full max-w-xs">
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
               <span className="label-text text-2xl">
                 Ingredient 1: <span className="text-red-500">*</span>
               </span>
@@ -53,7 +52,7 @@ function RecipeForm({
             <div className="label"></div>
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control mx-auto w-full max-w-xs">
             <div className="label">
               <span className="label-text text-2xl">
                 Ingredient 2:<span className="text-red-500">*</span>
@@ -70,7 +69,7 @@ function RecipeForm({
             <div className="label"></div>
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control mx-auto w-full max-w-xs">
             <div className="label">
               <span className="label-text text-2xl">
                 Ingredient 3:<span className="text-red-500">*</span>
@@ -87,7 +86,7 @@ function RecipeForm({
             <div className="label"></div>
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control mx-auto w-full max-w-xs">
             <div className="label">
               <span className="label-text text-2xl">Ingredient 4:</span>
             </div>
@@ -101,15 +100,47 @@ function RecipeForm({
             <div className="label"></div>
           </label>
 
-          <label className="form-control w-full max-w-xs">
+         </div>
+<div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+            <label className="form-control mx-auto w-full max-w-xs">
+              <div className="label">
+                <span>
+                  How much time do you have for cooking?
+                </span>
+              </div>
+            <div className="w-full">
+              <input
+                type="range"
+                required
+                min={15}
+                max="90"
+                value={time}
+                className="range range-secondary"
+                step="15"
+                onChange={handleTimeInput}
+              />
+             <div className="flex w-full justify-between px-2 text-xs">
+                  <span>15</span>
+                  <span>30</span>
+                  <span>45</span>
+                  <span>60</span>
+                  <span>75</span>
+                  <span>90</span>
+
+              </div>
+ <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text text-2xl">Ingredient 5:</span>
+              <span className="label-text text-2xl">
+                For how many people do you like to cook?
+                <span className="text-red-500">*</span>
+              </span>
             </div>
             <input
-              type="text"
-              placeholder="Type here"
-              value={ingredient5}
-              onChange={handleIngredient5Input}
+              type="number"
+              required
+              placeholder="2"
+              value={guests}
+              onChange={handleGuestsInput}
               className="input input-bordered w-full max-w-xs border-2 border-pallette-50 text-xl"
             />
             <div className="label"></div>
@@ -154,56 +185,28 @@ function RecipeForm({
             </select>
           </label>
 
-          {/* <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">
-                Do you have a preferred cuisine?
-              </span>
-            </div>
-            <select
-              className="select select-bordered"
-              name="difficulty"
-              onChange={handleCuisineInput}
-              value={cuisine}
-            >
-              <option>Pick one</option>
-              <option value="asian">Asian</option>
-              <option value="mediterranean">Mediterranean</option>
-              <option value="fusion">Fusion</option>
-              <option value="spicy">Spicy</option>
-              <option value="sweet">Sweet</option>
-            </select>
-          </label> */}
-
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-2xl">
                 How much time do you have for cooking?
                 <span className="text-red-500">*</span>
               </span>
-            </div>
-            <div className="w-full">
-              <input
-                type="range"
-                required
-                min={15}
-                max="90"
-                value={time}
-                className="range"
-                step="15"
-                onChange={handleTimeInput}
-              />
-              <div className="flex w-full justify-between px-2 text-xs">
-                <span>{time === 15}</span>
-                <span>{time === 30}</span>
-                <span>{time === 45}</span>
-                <span>{time === 60}</span>
-                <span>{time === 75}</span>
-                <span>{time === 90}</span>
-              </div>
-              <div className="mt-2 text-center">{time} Minutes</div>
-            </div>
-          </label>
+           
+              <select
+                className="select select-bordered w-full"
+                name="cuisine"
+                onChange={handleCuisineInput}
+                value={cuisine}
+              >
+                <option>Pick one</option>
+                <option value="asian">Asian</option>
+                <option value="mediterranean">Mediterranean</option>
+                <option value="fusion">Fusion</option>
+                <option value="spicy">Spicy</option>
+                <option value="sweet">Sweet</option>
+              </select>
+            </label>
+
 
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -226,23 +229,7 @@ function RecipeForm({
             </select>
           </label>
 
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text text-2xl">
-                For how many people do you like to cook?
-                <span className="text-red-500">*</span>
-              </span>
-            </div>
-            <input
-              type="number"
-              required
-              placeholder="2"
-              value={guests}
-              onChange={handleGuestsInput}
-              className="input input-bordered w-full max-w-xs border-2 border-pallette-50 text-xl"
-            />
-            <div className="label"></div>
-          </label>
+         
           <label className="form-control w-full max-w-xs text-xl">
             <button
 
@@ -252,7 +239,7 @@ function RecipeForm({
             >
               Generate Recipe
             </button>
-          </label>
+          </div>
         </div>
       </form>
     </>
