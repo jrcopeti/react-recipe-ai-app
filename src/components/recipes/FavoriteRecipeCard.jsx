@@ -103,6 +103,7 @@ function FavoriteRecipeCard() {
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
 
+
       <section>
         <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
         {favoriteRecipe.reviews.map((review, i) => (
@@ -178,6 +179,14 @@ function FavoriteRecipeCard() {
           )}
         </>
       )}
+
+      <button
+        className="btn btn-secondary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+        onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
+      >
+        Remove from Favorites
+      </button>
+
     </div>
   );
 }
