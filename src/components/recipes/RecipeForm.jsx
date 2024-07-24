@@ -35,7 +35,7 @@ function RecipeForm({
             </div>
           </label>
 
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Ingredient 1:</span>
@@ -68,7 +68,7 @@ function RecipeForm({
               />
               <div className="label">
                 <span className="label-text-alt"></span>
-                <span className="label-text-alt text-xs italic">*required</span>
+                <span className="abel-text-alt text-xs italic">*required</span>
               </div>
             </label>
 
@@ -99,7 +99,7 @@ function RecipeForm({
             </label>
           </div>
 
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text" required>
@@ -112,9 +112,9 @@ function RecipeForm({
                   min={15}
                   max="90"
                   value={time}
-                  className="range"
                   step="15"
                   onChange={handleTimeInput}
+                  className="range range-secondary"
                 />
                 <div className="flex w-full justify-between px-2 text-xs">
                   <span>15</span>
@@ -144,11 +144,11 @@ function RecipeForm({
             </label>
           </div>
 
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text">
-                  Vegetarian, lactose intolerant? Choose an option.
+                  Vegetarian? Any intolerances?
                 </span>
               </div>
               <select
