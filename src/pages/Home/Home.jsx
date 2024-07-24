@@ -13,7 +13,7 @@ function Home() {
           ChatGPT, suggest creative and delicious recipes tailored to your
           preferences. Save your favorite recipes and enjoy hassle-free cooking!
         </p>
-        <Link to="/recipes">
+        <Link to="/generate-recipe">
           <button className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500">
             Get a recipe
           </button>
