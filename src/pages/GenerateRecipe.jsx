@@ -60,8 +60,6 @@ export default function GenerateRecipe() {
 
   return (
     <>
-      <h1>I am a form to generate a recipe.</h1>
-
       <form onSubmit={handleSubmit}>
         <div>
           <div>
@@ -145,7 +143,9 @@ export default function GenerateRecipe() {
 
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Vegetarian, lactose intolerant? Choose an otption</span>
+              <span className="label-text">
+                Vegetarian, lactose intolerant? Choose an otption
+              </span>
             </div>
             <select
               className="select select-bordered"

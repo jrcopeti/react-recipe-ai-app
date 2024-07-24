@@ -25,8 +25,6 @@ function RecipeForm({
 }) {
   return (
     <>
-      <h1>I am a form to generate a recipe.</h1>
-
       <form onSubmit={handleGenerateRecipe}>
         <div>
           <div>

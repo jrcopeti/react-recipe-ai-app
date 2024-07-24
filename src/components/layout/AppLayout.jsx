@@ -30,7 +30,7 @@ function AppLayout() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar toggleSidebar={toggleSidebar} />
-      <div className="flex flex-grow">
+      <div className="relative flex flex-grow">
         <Sidebar ref={sidebarRef} isOpen={isSidebarOpen} />
         <main className="flex-grow border-2 border-pallette-50 bg-pallette-200 p-6 text-center text-2xl text-cyan-950">
           <Outlet />
