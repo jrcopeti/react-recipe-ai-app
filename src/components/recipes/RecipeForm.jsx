@@ -26,8 +26,10 @@ function RecipeForm({
   return (
     <>
       <form onSubmit={handleGenerateRecipe}>
+
         <div className="m-[10px] flex flex-col items-center justify-start">
           <label className="form-control w-full max-w-lg text-4xl font-medium">
+
             <div className="label">
               What have you got left in your fridge and pantry? Choose up to
               five ingredients for your recipe.
@@ -243,7 +245,9 @@ function RecipeForm({
           </label>
           <label className="form-control w-full max-w-xs text-xl">
             <button
+
               className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-zinc-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500"
+
               type="submit"
             >
               Generate Recipe

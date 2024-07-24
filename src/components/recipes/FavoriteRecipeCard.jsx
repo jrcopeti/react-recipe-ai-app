@@ -12,6 +12,7 @@ function FavoriteRecipeCard() {
     recipe: favoriteRecipe,
     getRecipeById,
     errorRecipeById,
+    isLoading,
   } = useGetRecipeById(recipeId);
 
   const {
@@ -28,6 +29,13 @@ function FavoriteRecipeCard() {
   const [isReviewing, setIsReviewing] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+
+  if (isLoading)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
 
   const handleDeleteRecipe = (id) => {
     console.log("Recipe deleted in Favorite recipes list", id);
@@ -55,7 +63,7 @@ function FavoriteRecipeCard() {
     updateRecipe(favoriteRecipe.id, updatedRecipe);
   };
 
-  if (!favoriteRecipe)
+  if (!isLoading && !favoriteRecipe)
     return (
       <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
         <p>No Recipe was found here...</p>
@@ -181,6 +189,14 @@ function FavoriteRecipeCard() {
           )}
         </>
       )}
+
+      <button
+        className="btn btn-secondary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+        onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
+      >
+        Remove from Favorites
+      </button>
+
     </div>
   );
 }
