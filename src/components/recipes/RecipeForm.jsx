@@ -26,18 +26,21 @@ function RecipeForm({
   return (
     <>
       <form onSubmit={handleGenerateRecipe}>
+
         <div>
           <div>
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                What have you got left in your fridge and pantry? Choose up to
-                five incredients for your recipe.
+                <h2 className="text-2xl">
+                  Do you want a idea for a recipe? Choose up to five ingredients
+                  for your recipe.
+                </h2>
               </div>
             </label>
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 1:</span>
+                <span className="label-text">Ingredient 1:</span>
               </div>
               <input
                 type="text"
@@ -51,7 +54,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 2:</span>
+                <span className="label-text">Ingredient 2:</span>
               </div>
               <input
                 type="text"
@@ -65,7 +68,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 3:</span>
+                <span className="label-text">Ingredient 3:</span>
               </div>
               <input
                 type="text"
@@ -79,7 +82,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 4:</span>
+                <span className="label-text">Ingredient 4:</span>
               </div>
               <input
                 type="text"
@@ -93,7 +96,7 @@ function RecipeForm({
 
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Incredient 5:</span>
+                <span className="label-text">Ingredient 5:</span>
               </div>
               <input
                 type="text"
@@ -105,6 +108,85 @@ function RecipeForm({
               <div className="label"></div>
             </label>
           </div>
+
+        <div className="m-[130px] flex flex-col items-center justify-start">
+          <label className="form-control w-full max-w-lg">
+            <div className="label">
+              What have you got left in your fridge and pantry? Choose up to
+              five incredients for your recipe.
+            </div>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Incredient 1:</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              value={ingredient1}
+              onChange={handleIngredient1Input}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="label"></div>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Incredient 2:</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              value={ingredient2}
+              onChange={handleIngredient2Input}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="label"></div>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Incredient 3:</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              value={ingredient3}
+              onChange={handleIngredient3Input}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="label"></div>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Incredient 4:</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              value={ingredient4}
+              onChange={handleIngredient4Input}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="label"></div>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">Incredient 5:</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              value={ingredient5}
+              onChange={handleIngredient5Input}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <div className="label"></div>
+          </label>
+
 
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -231,7 +313,10 @@ function RecipeForm({
             <div className="label"></div>
           </label>
           <label className="form-control w-full max-w-xs">
-            <button className="btn" type="submit">
+            <button
+              className="border-pallette-50 bg-pallette-300 text-pallette-500 hover:bg-pallette-50 hover:text-pallette-500 rounded-lg border-2 px-9 py-3 text-2xl font-normal transition duration-200"
+              type="submit"
+            >
               Generate Recipe
             </button>
           </label>

@@ -20,7 +20,7 @@ const getRecipeById = async (recipeId) => {
     return data;
   } catch (error) {
     console.error("Error fetching recipe", error);
-    return null;
+    throw error;
   }
 };
 
@@ -32,7 +32,7 @@ const createRecipe = async (newRecipe) => {
     return data;
   } catch (error) {
     console.error("Error creating recipe", error);
-    return null;
+    throw error;
   }
 };
 
@@ -42,7 +42,7 @@ const updateRecipe = async (recipeId, newRecipe) => {
     console.log("Recipe updated", newRecipe);
   } catch (error) {
     console.error("Error updating recipe", error);
-    return null;
+    throw error;
   }
 };
 
@@ -52,7 +52,7 @@ const deleteRecipe = async (recipeId) => {
     console.log("Recipe deleted", recipeId);
   } catch (error) {
     console.error("Error deleting recipe", error);
-    return null;
+    throw error;
   }
 };
 
