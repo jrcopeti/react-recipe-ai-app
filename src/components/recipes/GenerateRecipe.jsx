@@ -131,7 +131,7 @@ function GenerateRecipe() {
 
   if (errorAi)
     return (
-      <div className="flex w-full flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+      <div className="flex w-full flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
         <p>There was an error in generating a recipe</p>
         <button onClick={() => window.location.reload()}>Try Again</button>
       </div>

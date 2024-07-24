@@ -55,19 +55,23 @@ function FavoriteRecipesList() {
 
   if (!isLoading && (!favoriteRecipes || favoriteRecipes.length === 0)) {
     return (
-      <div className="w-fit rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+      <div className="flex w-fit items-center justify-center rounded-lg p-6 text-4xl">
         <p>No recipes to display</p>
       </div>
     );
   }
 
   return (
-    <section className="mt-8 flex flex-col items-center justify-center">
-      <h2 className="mb-4 text-2xl font-bold text-cyan-950">
+
+    <section className="mt-8">
+      <h2 className="mb-4 text-6xl font-bold text-cyan-950">
+
         Favorite Recipes
       </h2>
       <div className="space-y-6">
         {favoriteRecipes.map((recipe) => (
+
+
           <div
             className="flex flex-col items-center justify-center gap-2"
             key={recipe.id}
@@ -83,9 +87,10 @@ function FavoriteRecipesList() {
 
             {errorDeleteRecipeIds.includes(recipe.id) ? (
               <div className="w-fit rounded-lg border border-pallette-200 bg-pallette-400 p-6 text-center shadow-lg">
+
                 <p>There was an error in deleting the recipe. </p>
                 <button
-                  className="btn btn-secondary"
+                  className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
                   onClick={() => window.location.reload()}
                 >
                   Try Again
@@ -97,13 +102,16 @@ function FavoriteRecipesList() {
             ) : (
               <div className="flex gap-3">
                 <Link to={`/recipes/${recipe.id}`}>
-                  <button disabled={isDeleting} className="btn btn-primary">
+                  <button
+                    disabled={isDeleting}
+                    className="space btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                  >
                     View Recipe
                   </button>
                 </Link>
 
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
                   onClick={() => handleDeleteRecipe(recipe.id)}
                   disabled={isDeleting}
                 >
