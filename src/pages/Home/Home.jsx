@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="m-0 flex min-h-screen items-center justify-center">
+    <div className="m-0 flex min-h-full items-center justify-center">
       <div className="max-w-5xl p-4 text-center">
         <h1 className="mb-8 text-6xl font-bold text-pallette-50">
           Welcome to the DinnerCraft
