@@ -3,5 +3,9 @@ import FavoriteRecipeCard from "../../components/recipes/FavoriteRecipeCard";
 
 export default function Recipe() {
   const { id } = useParams();
-  return <FavoriteRecipeCard id={id} />;
+  return (
+    <div className="flex items-center justify-center">
+      <FavoriteRecipeCard id={id} />
+    </div>
+  );
 }

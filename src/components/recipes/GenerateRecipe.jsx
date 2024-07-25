@@ -20,8 +20,6 @@ function GenerateRecipe() {
 
   const [isSaved, setIsSaved] = useState(false);
 
-  const [query, setQuery] = useState("");
-
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi, setRecipe } =
     useFetchRecipeAi();
   const {
@@ -31,21 +29,14 @@ function GenerateRecipe() {
     setErrorCreating,
   } = useCreateRecipe();
 
-  const { image, getImage } = useImage(recipe);
-
-
-
-  console.log("image", image);
-
-
-  // console.log("image", image);
+  const { image, isLoadingImage } = useImage(recipe);
 
   useEffect(() => {
     let timer;
     if (isSaved) {
       timer = setTimeout(() => {
         setIsSaved(false);
-      }, 5000);
+      }, 3000);
     }
 
     return () => clearTimeout(timer);
@@ -112,7 +103,7 @@ function GenerateRecipe() {
         behavior: "smooth",
       });
       setIsSaved(true);
-      setRecipe(null);
+      // setRecipe(null);
     } catch (error) {
       console.error("Error saving recipe", error);
     }
@@ -126,8 +117,12 @@ function GenerateRecipe() {
     setRecipe(null);
   };
 
-  if (isLoadingRecipeAi)
-    return <span className="loading loading-ring loading-lg"></span>;
+  if (isLoadingRecipeAi || isLoadingImage)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
 
   if (errorAi)
     return (
@@ -141,8 +136,10 @@ function GenerateRecipe() {
     <>
       <div>
         {isSaved && (
-          <div className="absolute right-[60px] top-6 flex w-fit transform flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
-            <p>Recipe saved successfully!</p>
+          <div className="toast">
+            <div className="flex w-fit transform flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+              <p>Recipe saved successfully!</p>
+            </div>
           </div>
         )}
         {!recipe && !errorAi ? (

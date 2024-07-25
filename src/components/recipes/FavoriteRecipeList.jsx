@@ -13,11 +13,8 @@ function FavoriteRecipesList() {
   } = useGetAllRecipes();
   console.log("favoriteRecipes", favoriteRecipes);
 
-  const {
-    deleteRecipe,
-    isLoading: isDeleting,
-    errorDeleting,
-  } = useDeleteRecipe(getAllRecipes);
+  const { deleteRecipe, isLoading: isDeleting } =
+    useDeleteRecipe(getAllRecipes);
 
   console.log("deletedRecipeIds", deletedRecipeIds);
 
@@ -26,7 +23,7 @@ function FavoriteRecipesList() {
     if (deletedRecipeIds && deletedRecipeIds.length > 0) {
       timer = setTimeout(() => {
         setDeletedRecipeIds([]);
-      }, 5000);
+      }, 3000);
     }
 
     return () => clearTimeout(timer);
@@ -55,23 +52,19 @@ function FavoriteRecipesList() {
 
   if (!isLoading && (!favoriteRecipes || favoriteRecipes.length === 0)) {
     return (
-      <div className="flex w-fit items-center justify-center rounded-lg p-6 text-4xl">
+      <div className=" mt-3 flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
         <p>No recipes to display</p>
       </div>
     );
   }
 
   return (
-
     <section className="mt-8">
       <h2 className="mb-4 text-6xl font-bold text-cyan-950">
-
         Favorite Recipes
       </h2>
       <div className="space-y-6">
         {favoriteRecipes.map((recipe) => (
-
-
           <div
             className="flex flex-col items-center justify-center gap-2"
             key={recipe.id}
@@ -80,14 +73,15 @@ function FavoriteRecipesList() {
             <p>{recipe.description}</p>
 
             {deletedRecipeIds.includes(recipe.id) && (
-              <div className="w-fit rounded-lg border border-pallette-200 bg-pallette-400 p-6 text-center shadow-lg">
-                <p>Recipe deleted successfully!</p>
+              <div className="toast">
+                <div className="flex w-fit transform flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+                  <p>Recipe removed from the list.</p>
+                </div>
               </div>
             )}
 
             {errorDeleteRecipeIds.includes(recipe.id) ? (
               <div className="w-fit rounded-lg border border-pallette-200 bg-pallette-400 p-6 text-center shadow-lg">
-
                 <p>There was an error in deleting the recipe. </p>
                 <button
                   className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
@@ -100,7 +94,7 @@ function FavoriteRecipesList() {
                 </div>
               </div>
             ) : (
-              <div className="flex gap-3">
+              <div className="flex items-center gap-3">
                 <Link to={`/recipes/${recipe.id}`}>
                   <button
                     disabled={isDeleting}
@@ -115,11 +109,7 @@ function FavoriteRecipesList() {
                   onClick={() => handleDeleteRecipe(recipe.id)}
                   disabled={isDeleting}
                 >
-                  {isDeleting ? (
-                    <span className="loading loading-ring loading-sm"></span>
-                  ) : (
-                    "Remove from Favorites"
-                  )}
+                  Remove from Favorites
                 </button>
               </div>
             )}

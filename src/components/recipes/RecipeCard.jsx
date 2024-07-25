@@ -67,11 +67,7 @@ function RecipeCard({
             onClick={() => handleFavoriteRecipe(recipe)}
             disabled={isCreating}
           >
-            {isCreating ? (
-              <span className="loading loading-ring loading-sm"></span>
-            ) : (
-              "Save Recipe"
-            )}
+            Save Recipe
           </button>
           <button
 
