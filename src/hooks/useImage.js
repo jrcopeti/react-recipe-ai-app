@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { fetchImage as fetchImageApi } from "../services/apiUnsplash";
 
-function useImage(query) {
+function useImage(recipe) {
   const [image, setImage] = useState(null);
   const [isLoadingImage, setIsLoading] = useState(false);
   const [errorImage, setErrorImage] = useState(null);
-  console.log("query in useImage hook", query);
+  console.log("recipe in useImage hook", recipe);
   const getImage = async () => {
     setIsLoading(true);
     setErrorImage(null);
 
     try {
-      const data = await fetchImageApi(query.query);
+      const data = await fetchImageApi(recipe.query);
       setImage(data);
     } catch (error) {
       setErrorImage(error);
@@ -21,10 +21,10 @@ function useImage(query) {
   };
 
   useEffect(() => {
-    if (query) {
-      getImage(query.query);
+    if (recipe) {
+      getImage(recipe.query);
     }
-  }, [query]);
+  }, [recipe]);
   return { image, isLoadingImage, errorImage, getImage };
 }
 

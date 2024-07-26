@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import FavoriteRecipeCard from "../../components/recipes/FavoriteRecipeCard";
 
-export default function Recipe() {
+function FavoriteRecipe() {
   const { id } = useParams();
   return (
     <div className="flex items-center justify-center">
@@ -9,3 +9,5 @@ export default function Recipe() {
     </div>
   );
 }
+
+export default FavoriteRecipe;

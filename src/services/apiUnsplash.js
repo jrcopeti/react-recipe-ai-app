@@ -13,10 +13,10 @@ const fetchImage = async (query) => {
     const { data } = await axios.get(`${url}${encodedQuery}`);
     console.log(data);
     image = data.results[1].urls.regular;
-    console.log(image);
     return image;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
