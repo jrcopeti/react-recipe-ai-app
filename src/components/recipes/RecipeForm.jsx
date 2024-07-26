@@ -1,3 +1,9 @@
+import {
+  sortedCuisines,
+  sortedDietaryOptions,
+  sortedTypesOfMeal,
+} from "../../assets/data";
+
 function RecipeForm({
   handleGenerateRecipe,
   handleIngredient1Input,
@@ -26,10 +32,8 @@ function RecipeForm({
   return (
     <>
       <form onSubmit={handleGenerateRecipe}>
-
         <div className="m-[10px] flex flex-col items-center justify-start">
           <label className="form-control w-full max-w-lg text-4xl font-medium">
-
             <div className="label">
               What have you got left in your fridge and pantry? Choose up to
               five ingredients for your recipe.
@@ -127,12 +131,11 @@ function RecipeForm({
               onChange={handleDietaryOptionsInput}
               value={dietaryOption}
             >
-              <option value="none"> None </option>
-              <option value="pescatarian">Pescatarian</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="vegan">Vegan</option>
-              <option value="lactoseFree">Lactose Free</option>
-              <option value="gluten">Gluten Free</option>
+              {sortedDietaryOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -154,7 +157,7 @@ function RecipeForm({
             </select>
           </label>
 
-          {/* <label className="form-control w-full max-w-xs">
+          <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text">
                 Do you have a preferred cuisine?
@@ -167,13 +170,13 @@ function RecipeForm({
               value={cuisine}
             >
               <option>Pick one</option>
-              <option value="asian">Asian</option>
-              <option value="mediterranean">Mediterranean</option>
-              <option value="fusion">Fusion</option>
-              <option value="spicy">Spicy</option>
-              <option value="sweet">Sweet</option>
+              {sortedCuisines.map((cuisine) => (
+                <option key={cuisine.value} value={cuisine.value}>
+                  {cuisine.label}
+                </option>
+              ))}
             </select>
-          </label> */}
+          </label>
 
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -216,13 +219,11 @@ function RecipeForm({
               value={typeOfMeal}
             >
               <option>Pick one</option>
-              <option value="starter">Starter</option>
-              <option value="main-course">Main Course</option>
-              <option value="dessert">Dessert</option>
-              <option value="snack">Snack</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
+              {sortedTypesOfMeal.map((meal) => (
+                <option key={meal.value} value={meal.value}>
+                  {meal.label}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -245,9 +246,7 @@ function RecipeForm({
           </label>
           <label className="form-control w-full max-w-xs text-xl">
             <button
-
               className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-zinc-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500"
-
               type="submit"
             >
               Generate Recipe
