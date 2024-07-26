@@ -134,50 +134,49 @@ function GenerateRecipe() {
 
   return (
     <>
-      <div>
-        {isSaved && (
-          <div className="toast">
-            <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
-              <p>Recipe saved successfully!</p>
-            </div>
+      {isSaved && (
+        <div className="toast">
+          <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+            <p>Recipe saved successfully!</p>
           </div>
-        )}
-        {!recipe && !errorAi ? (
-          <RecipeForm
-            handleGenerateRecipe={handleGenerateRecipe}
-            handleIngredient1Input={handleIngredient1Input}
-            handleIngredient2Input={handleIngredient2Input}
-            handleIngredient3Input={handleIngredient3Input}
-            handleIngredient4Input={handleIngredient4Input}
-            handleGuestsInput={handleGuestsInput}
-            handleTimeInput={handleTimeInput}
-            handleDifficultyInput={handleDifficultyInput}
-            handleDietaryOptionsInput={handleDietaryOptionsInput}
-            handleCuisineInput={handleCuisineInput}
-            handleTypeOfMealInput={handleTypeOfMealInput}
-            ingredient1={ingredient1}
-            ingredient2={ingredient2}
-            ingredient3={ingredient3}
-            ingredient4={ingredient4}
-            guests={guests}
-            time={time}
-            difficulty={difficulty}
-            dietaryOption={dietaryOption}
-            cuisine={cuisine}
-            typeOfMeal={typeOfMeal}
-          />
-        ) : (
-          <RecipeCard
-            recipe={recipe}
-            handleFavoriteRecipe={handleFavoriteRecipe}
-            handleDiscardRecipe={handleDiscardRecipe}
-            isCreating={isCreating}
-            errorCreating={errorCreating}
-            setErrorCreating={setErrorCreating}
-            image={image}
-          />
-        )}
-      </div>
+        </div>
+      )}
+      {!recipe && !errorAi && (
+        <RecipeForm
+          handleGenerateRecipe={handleGenerateRecipe}
+          handleIngredient1Input={handleIngredient1Input}
+          handleIngredient2Input={handleIngredient2Input}
+          handleIngredient3Input={handleIngredient3Input}
+          handleIngredient4Input={handleIngredient4Input}
+          handleGuestsInput={handleGuestsInput}
+          handleTimeInput={handleTimeInput}
+          handleDifficultyInput={handleDifficultyInput}
+          handleDietaryOptionsInput={handleDietaryOptionsInput}
+          handleCuisineInput={handleCuisineInput}
+          handleTypeOfMealInput={handleTypeOfMealInput}
+          ingredient1={ingredient1}
+          ingredient2={ingredient2}
+          ingredient3={ingredient3}
+          ingredient4={ingredient4}
+          guests={guests}
+          time={time}
+          difficulty={difficulty}
+          dietaryOption={dietaryOption}
+          cuisine={cuisine}
+          typeOfMeal={typeOfMeal}
+        />
+      )}
+      {recipe && !errorAi && (
+        <RecipeCard
+          recipe={recipe}
+          handleFavoriteRecipe={handleFavoriteRecipe}
+          handleDiscardRecipe={handleDiscardRecipe}
+          isCreating={isCreating}
+          errorCreating={errorCreating}
+          setErrorCreating={setErrorCreating}
+          image={image}
+        />
+      )}
     </>
   );
 }

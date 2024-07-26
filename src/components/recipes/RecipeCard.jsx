@@ -11,17 +11,15 @@ function RecipeCard({
 
   return (
     <div className="bg-transparent p-6 text-6xl font-normal text-cyan-950">
-      <h2 className="text-pallette-10 mb-4 text-center text-4xl font-bold">
+      <h2 className="mb-4 text-center text-4xl font-bold text-pallette-10">
         {recipe.title}
       </h2>
 
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         <img
           src={image}
-
           alt={recipe.title}
-          className="h-96 w-1/2 rounded-md object-cover object-center"
-
+          className="mb-2 h-96 rounded-md object-cover object-center lg:w-1/2"
         />
         <div className="flex-1 pl-4 text-lg">
           <p className="mb-4 text-2xl text-cyan-950">{recipe.description}</p>
@@ -34,7 +32,7 @@ function RecipeCard({
           <p className="text-2xl">
             <strong>Dietary Compliance:</strong> {recipe.dietaryOptions}
           </p>
-          <h3 className="text-pallette-10 mb-2 mt-4 text-3xl font-semibold">
+          <h3 className="mb-2 mt-4 text-3xl font-semibold text-pallette-10">
             Ingredients:
           </h3>
           <ul className="mb-4 list-inside list-disc text-center text-2xl">
@@ -45,10 +43,8 @@ function RecipeCard({
         </div>
       </div>
       <div className="mt-6 text-lg">
-
         <h3 className="mb-2 text-3xl font-semibold">Instructions:</h3>
         <ol className="mb-4 list-inside text-left text-2xl">
-
           {recipe.instructions.map((step, i) => (
             <li key={i}>{step}</li>
           ))}

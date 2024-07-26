@@ -44,7 +44,7 @@ function AppLayout() {
           isOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
         />
-        <main className="relative flex-grow text-center text-2xl text-cyan-950">
+        <main className="relative flex-grow overflow-x-hidden text-center text-2xl text-cyan-950">
           <div
             className="absolute inset-0 -z-10 bg-pallette-200 bg-center bg-no-repeat opacity-50"
             style={{

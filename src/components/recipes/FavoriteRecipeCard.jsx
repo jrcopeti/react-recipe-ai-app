@@ -93,15 +93,17 @@ function FavoriteRecipeCard() {
 
   return (
     <div className="bg-transparent p-6 text-6xl font-normal text-cyan-950">
-      <h2 className="text-pallette-10 mb-4 text-center text-4xl font-bold">
+      <h2 className="mb-4 text-center text-4xl font-bold text-pallette-10">
         {favoriteRecipe.title}
       </h2>
-      <div className="flex">
+
+      <div className="flex flex-col lg:flex-row">
         <img
           src={favoriteRecipe.image}
-          alt=""
-          className="h-96 w-1/2 rounded-md object-cover object-center"
+          alt={favoriteRecipe.title}
+          className="mb-2 h-96 rounded-md object-cover object-center lg:w-1/2"
         />
+
         <div className="flex-1 pl-4 text-lg">
           <p className="mb-4 text-2xl text-cyan-950">
             {favoriteRecipe.description}
@@ -115,7 +117,7 @@ function FavoriteRecipeCard() {
           <p className="text-2xl">
             <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
           </p>
-          <h3 className="mtext-pallette-10 mb-2 mt-4 text-3xl font-semibold">
+          <h3 className="mb-2 mt-4 text-3xl font-semibold text-pallette-10">
             Ingredients:
           </h3>
           <ul className="mb-4 list-inside list-disc text-center text-2xl">
@@ -125,7 +127,7 @@ function FavoriteRecipeCard() {
           </ul>
         </div>
       </div>
-      <h3 className="text-pallette-10 mb-2 text-3xl font-semibold">
+      <h3 className="mb-2 text-3xl font-semibold text-pallette-10">
         Instructions:
       </h3>
       <ol className="mb-4 list-inside text-left text-2xl">
