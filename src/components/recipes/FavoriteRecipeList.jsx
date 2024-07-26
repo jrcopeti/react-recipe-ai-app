@@ -1,22 +1,26 @@
+// React
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// Hooks
 import { useGetAllRecipes } from "../../hooks/useGetAllRecipes";
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
-import { useEffect, useState } from "react";
 
 function FavoriteRecipesList() {
+  // deleted recipe ids state
   const [deletedRecipeIds, setDeletedRecipeIds] = useState([]);
   const [errorDeleteRecipeIds, setErrorDeleteRecipeIds] = useState([]);
+
+  // get all recipes
   const {
     recipes: favoriteRecipes,
     getAllRecipes,
     isLoading,
   } = useGetAllRecipes();
-  console.log("favoriteRecipes", favoriteRecipes);
 
+  // delete recipe
   const { deleteRecipe, isLoading: isDeleting } =
     useDeleteRecipe(getAllRecipes);
-
-  console.log("deletedRecipeIds", deletedRecipeIds);
 
   useEffect(() => {
     let timer;
@@ -52,6 +56,7 @@ function FavoriteRecipesList() {
 
   if (!isLoading && (!favoriteRecipes || favoriteRecipes.length === 0)) {
     return (
+
       <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
         <p>No recipes to display</p>
       </div>
@@ -98,14 +103,14 @@ function FavoriteRecipesList() {
                 <Link to={`/recipes/${recipe.id}`}>
                   <button
                     disabled={isDeleting}
-                    className="space btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                    className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
                   >
                     View Recipe
                   </button>
                 </Link>
 
                 <button
-                  className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
+                  className="space btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
                   onClick={() => handleDeleteRecipe(recipe.id)}
                   disabled={isDeleting}
                 >

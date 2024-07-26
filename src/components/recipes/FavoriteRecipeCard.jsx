@@ -1,13 +1,26 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useGetRecipeById } from "../../hooks/useGetRecipeById";
-import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
-import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
+// React
 import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
+// Hooks
+import { useGetRecipeById } from "../../hooks/useGetRecipeById";
+import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
+
+import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
+
+import StarRating from "./StarRating";
+import StarDisplay from "./StarDisplay";
 
 function FavoriteRecipeCard() {
   const { recipeId } = useParams();
   const navigate = useNavigate();
 
+  // review state
+  const [isReviewing, setIsReviewing] = useState(false);
+  const [rating, setRating] = useState(1);
+  const [review, setReview] = useState("");
+
+  // get recipe by id
   const {
     recipe: favoriteRecipe,
     getRecipeById,
@@ -15,20 +28,15 @@ function FavoriteRecipeCard() {
     isLoading,
   } = useGetRecipeById(recipeId);
 
-  console.log("isloading", isLoading, "favoriteRecipe", favoriteRecipe);
-
+  // update recipe
   const {
     updateRecipe,
     isLoading: isUpdating,
     errorUpdate,
   } = useUpdateRecipe(getRecipeById);
 
+  // delete recipe
   const { deleteRecipe } = useDeleteRecipe();
-
-  console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
-  const [isReviewing, setIsReviewing] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState("");
 
   if (isLoading)
     return (
@@ -61,6 +69,9 @@ function FavoriteRecipeCard() {
       ],
     };
     updateRecipe(favoriteRecipe.id, updatedRecipe);
+    setRating(1);
+    setReview("");
+    setIsReviewing(false);
   };
 
   if (!isLoading && !favoriteRecipe)
@@ -114,10 +125,10 @@ function FavoriteRecipeCard() {
       <section>
         <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
         {favoriteRecipe.reviews.map((review, i) => (
-          <div key={i}>
-            <p>
-              <strong>Rating:</strong> {review.rating}
-            </p>
+          <div key={i} className="mb-4">
+            <div>
+              <StarDisplay rating={review.rating} />
+            </div>
             <p>{review.review}</p>
           </div>
         ))}
@@ -126,16 +137,16 @@ function FavoriteRecipeCard() {
       {!isReviewing ? (
         <>
           <button
+            className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
+            onClick={() => toggleReview()}
+          >
+            Review Recipe
+          </button>
+          <button
             className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
             onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
           >
             Remove from Favorites
-          </button>
-          <button
-            className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
-            onClick={() => toggleReview()}
-          >
-            Review Recipe
           </button>
         </>
       ) : (
@@ -151,36 +162,41 @@ function FavoriteRecipeCard() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleReviewSubmit}>
-              <label className="block" htmlFor="rating">
-                Rating:
+            <form
+              onSubmit={handleReviewSubmit}
+              className="flex flex-col items-center justify-center"
+            >
+              <label className="form-control w-full max-w-sm">
+                Choose a rating:
+                <StarRating rating={rating} setRating={setRating} />
+                <input
+                  type="text"
+                  name="review"
+                  placeholder="Write your review here..."
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
+                  className="input input-bordered my-2 w-full border-2 border-pallette-50 text-xl"
+                  disabled={isUpdating}
+                  required
+                />
               </label>
-              <select
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                className="m-2 w-20 rounded-lg border-2 border-pallette-50 p-2"
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <input
-                className="m-2 w-full rounded-lg border-2 border-pallette-50 p-2"
-                placeholder="Write your review here..."
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                disabled={isUpdating}
-              />
-
-              <button
-                type="submit"
-                className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
-                disabled={isUpdating}
-              >
-                Submit Review
-              </button>
+              <div className="flex items-center gap-4">
+                <button
+                  type="submit"
+                  className="btn btn-secondary m-2 max-w-xs border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                  disabled={isUpdating}
+                >
+                  Submit Review
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary m-2 max-w-xs border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                  disabled={isUpdating}
+                  onClick={() => toggleReview()}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           )}
         </>

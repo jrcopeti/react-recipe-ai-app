@@ -7,8 +7,10 @@ function Home() {
         <h1 className="mb-8 text-6xl font-bold text-cyan-950">
           Welcome to the Dinner Generator
         </h1>
+
         <p className="mb-12 text-center text-3xl font-normal text-cyan-950">
           Struggling to figure out what's for dinner? Simply enter the
+
           ingredients you have in your fridge, and let our AI, powered by
           ChatGPT, suggest creative and delicious recipes tailored to your
           preferences. Save your favorite recipes and enjoy hassle-free cooking!

@@ -1,11 +1,15 @@
+//React
 import { useState, useRef, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+
+//Components
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
-import { Outlet } from "react-router-dom";
 
 function AppLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const sidebarRef = useRef(null);
   const navbarRef = useRef(null);
 
@@ -35,7 +39,11 @@ function AppLayout() {
     <div className="flex min-h-screen flex-col">
       <Navbar ref={navbarRef} toggleSidebar={toggleSidebar} />
       <div className="relative flex flex-grow">
-        <Sidebar ref={sidebarRef} isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <Sidebar
+          ref={sidebarRef}
+          isOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+        />
         <main className="flex-grow border-2 border-pallette-50 bg-pallette-200 text-center text-2xl text-cyan-950">
           <Outlet />
         </main>
