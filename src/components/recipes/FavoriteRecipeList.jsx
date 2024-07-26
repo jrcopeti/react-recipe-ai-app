@@ -56,7 +56,6 @@ function FavoriteRecipesList() {
 
   if (!isLoading && (!favoriteRecipes || favoriteRecipes.length === 0)) {
     return (
-
       <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
         <p>No recipes to display</p>
       </div>
@@ -64,8 +63,10 @@ function FavoriteRecipesList() {
   }
 
   return (
-    <section className="mt-8 px-8 pb-8 max-w-5xl">
-      <h2 className="mb-4 text-6xl font-bold text-cyan-950">
+
+    <section className="mt-8">
+      <h2 className="text-pallette-10 mb-4 text-6xl font-bold">
+
         Favorite Recipes
       </h2>
       <div className="space-y-6">
@@ -79,14 +80,14 @@ function FavoriteRecipesList() {
 
             {deletedRecipeIds.includes(recipe.id) && (
               <div className="toast">
-                <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+                <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
                   <p>Recipe removed from the list.</p>
                 </div>
               </div>
             )}
 
             {errorDeleteRecipeIds.includes(recipe.id) ? (
-              <div className="w-fit rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-center shadow-lg">
+              <div className="w-fit rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-center text-pallette-500 shadow-lg">
                 <p>There was an error in deleting the recipe. </p>
                 <button
                   className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
@@ -94,7 +95,7 @@ function FavoriteRecipesList() {
                 >
                   Try Again
                 </button>
-                <div className="w-fit rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-center shadow-lg">
+                <div className="w-fit rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-center text-pallette-500 shadow-lg">
                   <p>Recipe deleted successfully!</p>
                 </div>
               </div>

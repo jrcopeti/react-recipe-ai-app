@@ -1,8 +1,7 @@
-//React
 import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-//Components
+// Components
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
@@ -44,8 +43,14 @@ function AppLayout() {
           isOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
         />
-        <main className="flex-grow border-2 border-pallette-50 bg-pallette-200 text-center text-2xl text-cyan-950">
-          <Outlet />
+        <main className="relative flex-grow text-center text-2xl text-cyan-950">
+          <div
+            className="absolute inset-0 bg-pallette-200 bg-center bg-no-repeat opacity-50 bg-blend-darken"
+            style={{ backgroundImage: "url('../src/picture2.png')" }}
+          ></div>
+          <div className="relative z-10 p-6">
+            <Outlet />
+          </div>
         </main>
       </div>
       <Footer />

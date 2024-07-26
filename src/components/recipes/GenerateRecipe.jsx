@@ -126,7 +126,7 @@ function GenerateRecipe() {
 
   if (errorAi)
     return (
-      <div className="flex w-full flex-col rounded-lg border-2 border-pallette-50 bg-pallette-50 p-6 shadow-md shadow-zinc-500">
+      <div className="flex w-full flex-col rounded-lg border-2 border-pallette-50 bg-pallette-50 p-6 text-pallette-500 shadow-md shadow-zinc-500">
         <p>There was an error in generating a recipe</p>
         <button onClick={() => window.location.reload()}>Try Again</button>
       </div>
@@ -137,7 +137,9 @@ function GenerateRecipe() {
       <div>
         {isSaved && (
           <div className="toast">
-            <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+
+            <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-50 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+
               <p>Recipe saved successfully!</p>
             </div>
           </div>

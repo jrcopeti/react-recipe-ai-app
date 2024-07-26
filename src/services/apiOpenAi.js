@@ -69,7 +69,9 @@ const functionData = {
       query: {
         type: "string",
         description:
+
           "Only two keywords are allowed where the first is the cooking method and the second is the main ingredient. Only space is allowed. Do not include any special characters or numbers.",
+
       },
     },
 
