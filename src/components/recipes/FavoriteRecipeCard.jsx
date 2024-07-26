@@ -76,14 +76,14 @@ function FavoriteRecipeCard() {
 
   if (!isLoading && !favoriteRecipe)
     return (
-      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
+      <div className="flex w-fit flex-col rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 text-pallette-50 shadow-md shadow-zinc-500">
         <p>No Recipe was found here...</p>
       </div>
     );
 
   if (errorRecipeById)
     return (
-      <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
+      <div className="flex w-fit flex-col rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 text-pallette-500 shadow-md shadow-zinc-500">
         <p>Error: {errorRecipeById.message}</p>
         <Link to="/">
           <button>Back to Home</button>
@@ -91,8 +91,10 @@ function FavoriteRecipeCard() {
       </div>
     );
   return (
-    <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
-      <h2 className="mb-2 text-3xl font-bold">{favoriteRecipe.title}</h2>
+    <div className="bg-transparent p-6 font-normal text-cyan-950">
+      <h2 className="text-pallette-10 mb-2 text-3xl font-bold">
+        {favoriteRecipe.title}
+      </h2>
       <p className="mb-4 text-cyan-950">{favoriteRecipe.description}</p>
       <p>
         <strong>Preparation Time:</strong> {favoriteRecipe.preparationTime}
@@ -103,13 +105,15 @@ function FavoriteRecipeCard() {
       <p>
         <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
       </p>
-      <h3 className="mb-2 mt-4 font-semibold">Ingredients:</h3>
+      <h3 className="text-pallette-10 mb-2 mt-4 font-semibold">Ingredients:</h3>
       <ul className="mb-4 list-inside list-disc">
         {favoriteRecipe.ingredients.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
       </ul>
-      <h3 className="mb-2 mt-4 font-semibold">Instructions:</h3>
+      <h3 className="text-pallette-10 mb-2 mt-4 font-semibold">
+        Instructions:
+      </h3>
       <ol className="mb-4 list-inside list-decimal">
         {favoriteRecipe.instructions.map((step, i) => (
           <li key={i}>{step}</li>
