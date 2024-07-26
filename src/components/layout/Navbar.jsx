@@ -6,13 +6,15 @@ const Navbar = forwardRef(({ toggleSidebar }, ref) => {
       ref={ref}
       className="sticky top-0 z-50 flex items-center justify-between border-2 border-pallette-50 bg-pallette-400 p-4 text-pallette-500"
     >
-      <h1 className="flex-grow text-center text-4xl">Dinner Generator</h1>
+      <h1 className="flex-grow text-center text-6xl font-normal">
+        Dinner Generator
+      </h1>
       <button className="px-5 py-2" onClick={toggleSidebar}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          className="inline-block h-8 w-8 stroke-current" // Increased size here
+          className="inline-block h-10 w-10 stroke-current" // Increased size here
         >
           <path
             strokeLinecap="round"

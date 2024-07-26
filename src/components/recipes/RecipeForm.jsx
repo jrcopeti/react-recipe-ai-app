@@ -34,18 +34,22 @@ function RecipeForm({
         className="flex flex-col items-center p-4"
       >
         <div className="flex w-full max-w-4xl flex-col items-center space-y-6 md:space-y-8 lg:space-y-10">
+
           {/* Form Title */}
           <label className="form-control mx-auto w-full max-w-2xl">
             <h2 className="label text-center text-3xl">
               Choose up to 4 ingredients and let us surprise you with a recipe.
             </h2>
           </label>
+
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             {/* Ingredient 1 */}
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
+
                 <span className="label-text text-2xl">
                   Ingredient 1: <span className="text-rose-700">*</span>
+
                 </span>
               </div>
               <input
@@ -62,8 +66,10 @@ function RecipeForm({
             {/* Ingredient 2*/}
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
+
                 <span className="label-text text-2xl">
                   Ingredient 2: <span className="text-rose-700">*</span>
+
                 </span>
               </div>
               <input
@@ -77,10 +83,12 @@ function RecipeForm({
               />
             </label>
 
+
             {/* Ingredient 3 */}
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
                 <span className="label-text text-2xl">Ingredient 3:</span>
+
               </div>
               <input
                 type="text"
@@ -92,10 +100,12 @@ function RecipeForm({
               />
             </label>
 
+
             {/* Ingredient 4 */}
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
                 <span className="label-text text-2xl">Ingredient 4:</span>
+
               </div>
               <input
                 type="text"
@@ -108,16 +118,19 @@ function RecipeForm({
             </label>
           </div>
 
+
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
             {/* Time */}
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
+
                 <span className="label-text text-2xl">
                   How much time do you have for cooking?{" "}
                   <span className="text-rose-700">*</span>
+
                 </span>
               </div>
-              <div className="w-full">
+              <div className="w-full text-cyan-950">
                 <input
                   type="range"
                   name="time"
@@ -129,7 +142,7 @@ function RecipeForm({
                   className="range text-xl"
                   required
                 />
-                <div className="flex w-full justify-between px-2 text-xs">
+                <div className="flex w-full justify-between px-2 text-xs text-cyan-950">
                   <span>15</span>
                   <span>30</span>
                   <span>45</span>
@@ -137,12 +150,15 @@ function RecipeForm({
                   <span>75</span>
                   <span>90</span>
                 </div>
-                <div className="mt-2 text-center">{time} Minutes</div>
+                <div className="mt-2 text-center text-cyan-950">
+                  {time} Minutes
+                </div>
                 <div className="label">
                   <span className="label-text-alt"></span>
                 </div>
               </div>
             </label>
+
 
             {/* Guests */}
             <label className="form-control mx-auto w-full max-w-sm">
@@ -150,6 +166,7 @@ function RecipeForm({
                 <span className="label-text text-2xl">
                   For how many people do you like to cook?{" "}
                   <span className="text-rose-700">*</span>
+
                 </span>
               </div>
               <input
@@ -160,7 +177,7 @@ function RecipeForm({
                 max={12}
                 value={guests}
                 onChange={handleGuestsInput}
-                className="input input-bordered w-full border-2 border-pallette-50 text-xl"
+                className="input input-bordered w-full border-2 border-pallette-50 text-xl text-cyan-950"
               />
               <div className="label">
                 <span className="label-text-alt"></span>
@@ -168,16 +185,19 @@ function RecipeForm({
             </label>
           </div>
 
+
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
             {/* Difficulty */}
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
                 <span className="label-text text-2xl">
                   How advanced are your cooking skills?
+
                 </span>
               </div>
               <select
                 className="select select-bordered w-full border-2 border-pallette-50 text-xl"
+
                 name="difficulty"
                 onChange={handleDifficultyInput}
                 value={difficulty}
@@ -258,6 +278,7 @@ function RecipeForm({
 
           <button
             className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-slate-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500"
+
             type="submit"
           >
             Generate Recipe

@@ -13,7 +13,7 @@ const Sidebar = forwardRef(({ isOpen, toggleSidebar }, ref) => {
     <aside
       ref={ref}
       className={`fixed left-0 z-40 w-full transform border-2 border-pallette-50 bg-pallette-300 p-4 text-center text-7xl text-pallette-500 transition-transform ${
-        isOpen ? "top-16 translate-y-0" : "top-0 -translate-y-[100%]"
+        isOpen ? "top-15 translate-y-0" : "top-0 -translate-y-[100%]"
       }`}
     >
       <ul>
