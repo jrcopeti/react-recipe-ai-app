@@ -5,11 +5,11 @@ function Home() {
     <div className="m-10 flex min-h-full items-center justify-center">
       <div className="max-w-5xl p-4 text-center">
         <h1 className="text-pallette-10 mb-8 text-6xl font-bold">
-          Welcome to the Dinner Generator
+          Welcome to the Meal Generator
         </h1>
 
         <p className="mb-12 text-center text-3xl font-normal text-cyan-950">
-          Struggling to figure out what's for dinner? Simply enter the
+          Struggling to figure out what&apos;s for dinner? Simply enter the
           ingredients you have in your fridge, and let our AI, powered by
           ChatGPT, suggest creative and delicious recipes tailored to your
           preferences. Save your favorite recipes and enjoy hassle-free cooking!
