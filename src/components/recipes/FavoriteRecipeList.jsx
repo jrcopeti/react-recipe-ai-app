@@ -1,22 +1,26 @@
+// React
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// Hooks
 import { useGetAllRecipes } from "../../hooks/useGetAllRecipes";
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
-import { useEffect, useState } from "react";
 
 function FavoriteRecipesList() {
+  // deleted recipe ids state
   const [deletedRecipeIds, setDeletedRecipeIds] = useState([]);
   const [errorDeleteRecipeIds, setErrorDeleteRecipeIds] = useState([]);
+
+  // get all recipes
   const {
     recipes: favoriteRecipes,
     getAllRecipes,
     isLoading,
   } = useGetAllRecipes();
-  console.log("favoriteRecipes", favoriteRecipes);
 
+  // delete recipe
   const { deleteRecipe, isLoading: isDeleting } =
     useDeleteRecipe(getAllRecipes);
-
-  console.log("deletedRecipeIds", deletedRecipeIds);
 
   useEffect(() => {
     let timer;
@@ -52,7 +56,7 @@ function FavoriteRecipesList() {
 
   if (!isLoading && (!favoriteRecipes || favoriteRecipes.length === 0)) {
     return (
-      <div className=" mt-3 flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
+      <div className="mt-3 flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
         <p>No recipes to display</p>
       </div>
     );

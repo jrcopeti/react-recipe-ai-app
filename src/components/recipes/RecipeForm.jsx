@@ -113,7 +113,7 @@ function RecipeForm({
             <label className="form-control mx-auto w-full max-w-sm">
               <div className="label">
                 <span className="label-text text-2xl">
-                  How much time do you have for cooking?
+                  How much time do you have for cooking?{" "}
                   <span className="text-rose-700">*</span>
                 </span>
               </div>

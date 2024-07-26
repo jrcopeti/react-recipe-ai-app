@@ -1,13 +1,22 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useGetRecipeById } from "../../hooks/useGetRecipeById";
-import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
-import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
+// React
 import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
+// Hooks
+import { useGetRecipeById } from "../../hooks/useGetRecipeById";
+import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
+import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
 
 function FavoriteRecipeCard() {
   const { recipeId } = useParams();
   const navigate = useNavigate();
 
+  // review state
+  const [isReviewing, setIsReviewing] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+
+  // get recipe by id
   const {
     recipe: favoriteRecipe,
     getRecipeById,
@@ -15,20 +24,15 @@ function FavoriteRecipeCard() {
     isLoading,
   } = useGetRecipeById(recipeId);
 
-  console.log("isloading", isLoading, "favoriteRecipe", favoriteRecipe);
-
+  // update recipe
   const {
     updateRecipe,
     isLoading: isUpdating,
     errorUpdate,
   } = useUpdateRecipe(getRecipeById);
 
+  // delete recipe
   const { deleteRecipe } = useDeleteRecipe();
-
-  console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
-  const [isReviewing, setIsReviewing] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState("");
 
   if (isLoading)
     return (
