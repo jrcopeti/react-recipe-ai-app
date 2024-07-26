@@ -90,46 +90,62 @@ function FavoriteRecipeCard() {
         </Link>
       </div>
     );
+
   return (
-    <div className="rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-md shadow-zinc-500">
-      <h2 className="mb-2 text-3xl font-bold">{favoriteRecipe.title}</h2>
-      <p className="mb-4 text-cyan-950">{favoriteRecipe.description}</p>
-      <p>
-        <strong>Preparation Time:</strong> {favoriteRecipe.preparationTime}
-      </p>
-      <p>
-        <strong>Difficulty Level:</strong> {favoriteRecipe.difficultyLevel}
-      </p>
-      <p>
-        <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
-      </p>
-      <h3 className="mb-2 mt-4 font-semibold">Ingredients:</h3>
-      <ul className="mb-4 list-inside list-disc">
-        {favoriteRecipe.ingredients.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
-      <h3 className="mb-2 mt-4 font-semibold">Instructions:</h3>
-      <ol className="mb-4 list-inside list-decimal">
-        {favoriteRecipe.instructions.map((step, i) => (
-          <li key={i}>{step}</li>
-        ))}
-      </ol>
-      <p>
-        <strong>Serving Size:</strong> {favoriteRecipe.servingSize}
-      </p>
-      <p>
-        <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
-      </p>
+    <div className=" bg-pallette-200 p-6 text-6xl font-normal text-cyan-950">
+      <h2 className="mb-4 text-center text-4xl font-bold">
+        {favoriteRecipe.title}
+      </h2>
+      <div className="flex">
+        <img
+          src={favoriteRecipe.image}
+          alt=""
+          className="h-96 w-1/2 rounded-md object-cover object-center"
+        />
+        <div className="flex-1 pl-4 text-lg">
+          <p className="mb-4 text-2xl text-cyan-950">
+            {favoriteRecipe.description}
+          </p>
+          <p className="text-2xl">
+            <strong>Preparation Time:</strong> {favoriteRecipe.preparationTime}
+          </p>
+          <p className="text-2xl">
+            <strong>Difficulty Level:</strong> {favoriteRecipe.difficultyLevel}
+          </p>
+          <p className="text-2xl">
+            <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
+          </p>
+          <h3 className="mb-2 mt-4 text-3xl font-semibold">Ingredients:</h3>
+          <ul className="mb-4 list-inside list-disc text-left text-2xl">
+            {favoriteRecipe.ingredients.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="mt-6 text-lg">
+        <h3 className="mb-2 text-3xl font-semibold">Instructions:</h3>
+        <ol className="mb-4 list-inside list-decimal text-left text-2xl">
+          {favoriteRecipe.instructions.map((step, i) => (
+            <li key={i}>{step}</li>
+          ))}
+        </ol>
+        <p className="text-2xl">
+          <strong>Serving Size:</strong> {favoriteRecipe.servingSize}
+        </p>
+        <p className="text-2xl">
+          <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
+        </p>
+      </div>
 
       <section>
-        <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
+        <h3 className="mb-2 mt-4 font-semibold text-4xl">Reviews</h3>
         {favoriteRecipe.reviews.map((review, i) => (
           <div key={i} className="mb-4">
             <div>
               <StarDisplay rating={review.rating} />
             </div>
-            <p>{review.review}</p>
+            <p className='text-xl'>{review.review}</p>
           </div>
         ))}
       </section>
@@ -166,13 +182,14 @@ function FavoriteRecipeCard() {
               onSubmit={handleReviewSubmit}
               className="flex flex-col items-center justify-center"
             >
-              <label className="form-control w-full max-w-sm">
-                Choose a rating:
+              <label className="form-control w-full max-w-sm text-3xl">
+                Choose a rating
                 <StarRating rating={rating} setRating={setRating} />
                 <input
                   type="text"
                   name="review"
                   placeholder="Write your review here..."
+                  maxLength={100}
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
                   className="input input-bordered my-2 w-full border-2 border-pallette-50 text-xl"

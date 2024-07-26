@@ -64,7 +64,7 @@ function FavoriteRecipesList() {
   }
 
   return (
-    <section className="mt-8">
+    <section className="mt-8 px-8 pb-8 max-w-5xl">
       <h2 className="mb-4 text-6xl font-bold text-cyan-950">
         Favorite Recipes
       </h2>

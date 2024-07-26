@@ -10,7 +10,7 @@ function RecipeCard({
   if (!recipe) return null;
 
   return (
-    <div className="border-2 border-pallette-50 bg-pallette-200 p-6 text-6xl font-normal text-cyan-950">
+    <div className="bg-pallette-200 p-6 text-6xl font-normal text-cyan-950">
       <h2 className="mb-4 text-center text-4xl font-bold">{recipe.title}</h2>
       <div className="flex">
         <img
