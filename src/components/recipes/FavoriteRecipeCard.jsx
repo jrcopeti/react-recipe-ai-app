@@ -92,52 +92,62 @@ function FavoriteRecipeCard() {
     );
 
   return (
-
-    <div className="bg-transparent p-6 font-normal text-cyan-950">
-      <h2 className="text-pallette-10 mb-2 text-3xl font-bold">
+    <div className="bg-transparent p-6 text-6xl font-normal text-cyan-950">
+      <h2 className="text-pallette-10 mb-4 text-center text-4xl font-bold">
         {favoriteRecipe.title}
       </h2>
-      <p className="mb-4 text-cyan-950">{favoriteRecipe.description}</p>
-      <p>
-        <strong>Preparation Time:</strong> {favoriteRecipe.preparationTime}
-      </p>
-      <p>
-        <strong>Difficulty Level:</strong> {favoriteRecipe.difficultyLevel}
-      </p>
-      <p>
-        <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
-      </p>
-      <h3 className="text-pallette-10 mb-2 mt-4 font-semibold">Ingredients:</h3>
-      <ul className="mb-4 list-inside list-disc">
-        {favoriteRecipe.ingredients.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
-      <h3 className="text-pallette-10 mb-2 mt-4 font-semibold">
+      <div className="flex">
+        <img
+          src={favoriteRecipe.image}
+          alt=""
+          className="h-96 w-1/2 rounded-md object-cover object-center"
+        />
+        <div className="flex-1 pl-4 text-lg">
+          <p className="mb-4 text-2xl text-cyan-950">
+            {favoriteRecipe.description}
+          </p>
+          <p className="text-2xl">
+            <strong>Preparation Time:</strong> {favoriteRecipe.preparationTime}
+          </p>
+          <p className="text-2xl">
+            <strong>Difficulty Level:</strong> {favoriteRecipe.difficultyLevel}
+          </p>
+          <p className="text-2xl">
+            <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
+          </p>
+          <h3 className="mtext-pallette-10 mb-2 mt-4 text-3xl font-semibold">
+            Ingredients:
+          </h3>
+          <ul className="mb-4 list-inside list-disc text-center text-2xl">
+            {favoriteRecipe.ingredients.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <h3 className="text-pallette-10 mb-2 text-3xl font-semibold">
         Instructions:
       </h3>
-      <ol className="mb-4 list-inside list-decimal">
+      <ol className="mb-4 list-inside list-decimal text-left text-2xl">
         {favoriteRecipe.instructions.map((step, i) => (
           <li key={i}>{step}</li>
         ))}
       </ol>
-      <p>
+      <p className="text-2xl">
         <strong>Serving Size:</strong> {favoriteRecipe.servingSize}
       </p>
-      <p>
+      <p className="text-2xl">
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
 
-    
-
       <section>
-        <h3 className="mb-2 mt-4 font-semibold text-4xl">Reviews</h3>
+        <h3 className="mb-2 mt-4 text-2xl font-semibold">Reviews</h3>
         {favoriteRecipe.reviews.map((review, i) => (
           <div key={i} className="mb-4">
             <div>
               <StarDisplay rating={review.rating} />
             </div>
-            <p className='text-xl'>{review.review}</p>
+            <p className="text-xl">{review.review}</p>
           </div>
         ))}
       </section>
