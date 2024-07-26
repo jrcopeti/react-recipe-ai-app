@@ -10,9 +10,7 @@ function RecipeCard({
   if (!recipe) return;
 
   return (
-
     <div className="flex flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 font-normal text-pallette-500 shadow-xl">
-
       <h2 className="mb-2 text-3xl font-bold">{recipe.title}</h2>
       <p className="mb-4 text-pallette-500">{recipe.description}</p>
       <p>
@@ -43,8 +41,6 @@ function RecipeCard({
         <strong>Notes and Tips:</strong> {recipe.tips}
       </p>
 
-
-
       <img src={image} alt="" />
 
       {errorCreating ? (
@@ -56,23 +52,18 @@ function RecipeCard({
           >
             Try Again
           </button>
-
         </div>
       ) : (
         <div className="mt-3 flex gap-2">
           <button
-
-            className="btn btn-primary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
-
+            className="btn btn-primary border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
             onClick={() => handleFavoriteRecipe(recipe)}
             disabled={isCreating}
           >
             Save Recipe
           </button>
           <button
-
-            className="btn btn-secondary border-2 border-pallette-50 bg-pallette-100 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
-
+            className="btn btn-secondary border-2 border-pallette-50 bg-pallette-100 text-xl font-normal text-pallette-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
             onClick={() => handleDiscardRecipe()}
             disabled={isCreating}
           >
@@ -80,7 +71,6 @@ function RecipeCard({
           </button>
         </div>
       )}
-
     </div>
   );
 }
