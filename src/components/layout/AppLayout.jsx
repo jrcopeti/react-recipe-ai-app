@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import backgroundImage from "../../assets/images/picture2.png"; // Import the image
 
 function AppLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,9 +46,9 @@ function AppLayout() {
         />
         <main className="relative flex-grow text-center text-2xl text-cyan-950">
           <div
-            className="absolute inset-0 bg-pallette-200 bg-center bg-no-repeat opacity-50"
+            className="absolute inset-0 -z-10 bg-pallette-200 bg-center bg-no-repeat opacity-50"
             style={{
-              backgroundImage: "url('../src/assets/images/picture2.png')",
+              backgroundImage: `url(${backgroundImage})`, 
             }}
           ></div>
           <div className="relative z-10 p-6">
