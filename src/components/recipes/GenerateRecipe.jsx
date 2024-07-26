@@ -137,9 +137,7 @@ function GenerateRecipe() {
       <div>
         {isSaved && (
           <div className="toast">
-
-            <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-50 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
-
+            <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
               <p>Recipe saved successfully!</p>
             </div>
           </div>

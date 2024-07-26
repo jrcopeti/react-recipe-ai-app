@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="m-10 flex min-h-full items-center justify-center">
-      <div className="max-w-5xl p-4 text-center">
-        <h1 className="text-pallette-10 mb-8 text-6xl font-bold">
+    <div className="flex items-center justify-center lg:translate-y-1/4">
+      <div className="flex max-w-5xl flex-col items-center justify-center p-4 text-center">
+        <h1 className="mb-8 text-6xl font-bold text-pallette-10">
           Welcome to the Dinner Generator
         </h1>
 

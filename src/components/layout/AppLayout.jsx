@@ -45,8 +45,10 @@ function AppLayout() {
         />
         <main className="relative flex-grow text-center text-2xl text-cyan-950">
           <div
-            className="absolute inset-0 bg-pallette-200 bg-center bg-no-repeat opacity-50 bg-blend-darken"
-            style={{ backgroundImage: "url('../src/picture2.png')" }}
+            className="absolute inset-0 bg-pallette-200 bg-center bg-no-repeat opacity-50"
+            style={{
+              backgroundImage: "url('../src/assets/images/picture2.png')",
+            }}
           ></div>
           <div className="relative z-10 p-6">
             <Outlet />

@@ -63,25 +63,23 @@ function FavoriteRecipesList() {
   }
 
   return (
-
     <section className="mt-8">
-      <h2 className="text-pallette-10 mb-4 text-6xl font-bold">
-
+      <h2 className="mb-4 text-6xl font-bold text-pallette-10">
         Favorite Recipes
       </h2>
       <div className="space-y-6">
         {favoriteRecipes.map((recipe) => (
           <div
-            className="flex flex-col items-center justify-center gap-2"
+            className="flex max-w-3xl flex-col items-center justify-center gap-2"
             key={recipe.id}
           >
             <h3 className="text-3xl font-bold">{recipe.title} </h3>
-            <p>{recipe.description}</p>
+            <p className="">{recipe.description}</p>
 
             {deletedRecipeIds.includes(recipe.id) && (
               <div className="toast">
                 <div className="flex w-fit transform flex-col rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
-                  <p>Recipe removed from the list.</p>
+                  <p>Recipe removed from the list</p>
                 </div>
               </div>
             )}
