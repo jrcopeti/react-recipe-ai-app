@@ -3,6 +3,8 @@ import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
 import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
 import { useState } from "react";
+import StarRating from './StarRating';
+import StarDisplay from "./StarDisplay";
 
 function FavoriteRecipeCard() {
   const { recipeId } = useParams();
@@ -114,10 +116,10 @@ function FavoriteRecipeCard() {
       <section>
         <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
         {favoriteRecipe.reviews.map((review, i) => (
-          <div key={i}>
-            <p>
-              <strong>Rating:</strong> {review.rating}
-            </p>
+          <div key={i} className="mb-4">
+            <div>
+              <strong>Rating:</strong> <StarDisplay rating={review.rating} />
+            </div>
             <p>{review.review}</p>
           </div>
         ))}
@@ -153,19 +155,9 @@ function FavoriteRecipeCard() {
           ) : (
             <form onSubmit={handleReviewSubmit}>
               <label className="block" htmlFor="rating">
-                Rating:
+               Choose a rating from one to five stars:
               </label>
-              <select
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                className="m-2 w-20 rounded-lg border-2 border-pallette-50 p-2"
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <StarRating rating={rating} setRating={setRating} />
               <input
                 className="m-2 w-full rounded-lg border-2 border-pallette-50 p-2"
                 placeholder="Write your review here..."
