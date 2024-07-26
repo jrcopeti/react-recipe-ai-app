@@ -1,3 +1,9 @@
+import {
+  sortedCuisines,
+  sortedDietaryOptions,
+  sortedTypesOfMeal,
+} from "../../assets/data";
+
 function RecipeForm({
   handleGenerateRecipe,
   handleIngredient1Input,
@@ -23,17 +29,25 @@ function RecipeForm({
 }) {
   return (
     <>
+
       <form
         onSubmit={handleGenerateRecipe}
         className="flex flex-col items-center p-4"
       >
         <div className="flex w-full max-w-4xl flex-col items-center space-y-6 md:space-y-8 lg:space-y-10">
           <label className="form-control w-full">
+
             <div className="label text-center text-2xl">
+=======
+            <div className="label text-center text-xl">
+
+
+
               What have you got left in your fridge and pantry? Choose up to
               five ingredients for your recipe.
             </div>
           </label>
+
 
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             <label className="form-control mx-auto w-full max-w-xs">
@@ -55,6 +69,29 @@ function RecipeForm({
               </div>
             </label>
 
+=======
+
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+            <label className="form-control mx-auto w-full max-w-xs">
+              <div className="label">
+                <span className="label-text text-2xl">
+                  Ingredient 1: <span className="text-cyan-950">*</span>
+                </span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient1}
+                onChange={handleIngredient1Input}
+                className="input input-bordered w-full border-2 border-pallette-50 text-xl"
+                required
+              />
+              <div className="label">
+                <span className="label-text-alt"></span>
+              </div>
+            </label>
+
+
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text text-xl">
@@ -74,6 +111,7 @@ function RecipeForm({
               </div>
             </label>
 
+
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text text-xl">Ingredient 3:</span>
@@ -86,6 +124,43 @@ function RecipeForm({
                 className="input input-bordered w-full border-2 border-pallette-50 text-xl"
               />
             </label>
+=======
+
+
+            <label className="form-control mx-auto w-full max-w-xs">
+              <div className="label">
+                <span className="label-text text-xl">Ingredient 3:</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type here"
+                value={ingredient3}
+                onChange={handleIngredient3Input}
+                className="input input-bordered w-full border-2 border-pallette-50 text-xl"
+              />
+            </label>
+
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-2xl">
+                Vegetarian, lactose intolerant? Choose an option
+              </span>
+            </div>
+            <select
+              className="select select-bordered border-2 border-pallette-50 text-xl"
+              name="options"
+              onChange={handleDietaryOptionsInput}
+              value={dietaryOption}
+            >
+              {sortedDietaryOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
 
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
@@ -100,6 +175,32 @@ function RecipeForm({
               />
             </label>
           </div>
+
+
+
+
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text">
+                Do you have a preferred cuisine?
+              </span>
+            </div>
+            <select
+              className="select select-bordered"
+              name="difficulty"
+              onChange={handleCuisineInput}
+              value={cuisine}
+            >
+              <option>Pick one</option>
+              {sortedCuisines.map((cuisine) => (
+                <option key={cuisine.value} value={cuisine.value}>
+                  {cuisine.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
 
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="form-control mx-auto w-full max-w-xs">
@@ -135,12 +236,15 @@ function RecipeForm({
               </div>
             </label>
 
+
+
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text text-xl">
                   For how many people do you like to cook?
                   <span className="text-cyan-950">*</span>
                 </span>
+
               </div>
               <input
                 required
@@ -182,6 +286,104 @@ function RecipeForm({
               <div className="label">
                 <span className="label-text text-xl">
                   How advanced are your cooking skills?
+=======
+              </div>
+              <input
+                required
+                type="number"
+                placeholder="2"
+                value={guests}
+                onChange={handleGuestsInput}
+                className="input input-bordered w-full border-2 border-pallette-50 text-xl"
+              />
+              <div className="label">
+                <span className="label-text-alt"></span>
+              </div>
+            </label>
+          </div>
+
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-2xl">What type of meal?</span>
+            </div>
+            <select
+              className="select select-bordered border-2 border-pallette-50 text-xl"
+              name="difficulty"
+              onChange={handleTypeOfMealInput}
+              value={typeOfMeal}
+            >
+              <option>Pick one</option>
+              {sortedTypesOfMeal.map((meal) => (
+                <option key={meal.value} value={meal.value}>
+                  {meal.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-2xl">
+                For how many people do you like to cook?
+                <span className="text-red-500">*</span>
+              </span>
+            </div>
+            <input
+              type="number"
+              required
+              placeholder="2"
+              value={guests}
+              onChange={handleGuestsInput}
+              className="input input-bordered w-full max-w-xs border-2 border-pallette-50 text-xl"
+            />
+            <div className="label"></div>
+          </label>
+          <label className="form-control w-full max-w-xs text-xl">
+            <button
+              className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-zinc-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500"
+
+
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+            <label className="form-control mx-auto w-full max-w-xs">
+              <div className="label">
+                <span className="label-text text-xl">
+                  Vegetarian? Any intolerances?
+
+                </span>
+              </div>
+              <select
+                className="select select-bordered w-full border-2 border-pallette-50 text-xl"
+
+                name="difficulty"
+                onChange={handleDifficultyInput}
+                value={difficulty}
+              >
+                <option value="easy">Bloody Beginner</option>
+                <option value="medium">Hobby Cook</option>
+                <option value="hard">Chef</option>
+              </select>
+            </label>
+
+=======
+                name="options"
+                onChange={handleDietaryOptionsInput}
+                value={dietaryOption}
+              >
+                <option value="none"> None </option>
+                <option value="pescetarian">Pescetarian</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="lactoseFree">Lactose Free</option>
+                <option value="gluten">Gluten Free</option>
+              </select>
+            </label>
+
+
+            <label className="form-control mx-auto w-full max-w-xs">
+              <div className="label">
+                <span className="label-text text-xl">
+                  How advanced are your cooking skills?
                 </span>
               </div>
               <select
@@ -195,6 +397,7 @@ function RecipeForm({
                 <option value="hard">Chef</option>
               </select>
             </label>
+
 
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
@@ -219,9 +422,13 @@ function RecipeForm({
 
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
+
                 <span className="label-text text-xl">
                   What type of meal do you want to?
                 </span>
+=======
+                <span className="label-text text-xl">What type of meal?</span>
+
               </div>
               <select
                 className="select select-bordered w-full border-2 border-pallette-50 text-xl"
@@ -244,6 +451,10 @@ function RecipeForm({
           <div className="form-control mx-auto flex w-full max-w-xs">
             <button
               className="rounded-lg border-2 border-pallette-50 bg-pallette-300 px-9 py-3 text-2xl font-normal text-pallette-500 shadow-md shadow-slate-500 transition duration-200 hover:bg-pallette-50 hover:text-pallette-500"
+
+=======
+
+
               type="submit"
             >
               Generate Recipe

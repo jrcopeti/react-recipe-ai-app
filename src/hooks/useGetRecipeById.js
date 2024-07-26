@@ -4,11 +4,10 @@ import { getRecipeById as getRecipeByIdApi } from "../services/apiRecipes";
 
 function useGetRecipeById(recipeId) {
   const [recipe, setRecipe] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [errorRecipeById, setErrorRecipeById] = useState(null);
 
   const getRecipeById = async () => {
-    setIsLoading(true);
     setErrorRecipeById(null);
     try {
       const data = await getRecipeByIdApi(recipeId);

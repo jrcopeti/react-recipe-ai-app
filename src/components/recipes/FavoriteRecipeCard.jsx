@@ -17,6 +17,8 @@ function FavoriteRecipeCard() {
     isLoading,
   } = useGetRecipeById(recipeId);
 
+  console.log("isloading", isLoading, "favoriteRecipe", favoriteRecipe);
+
   const {
     updateRecipe,
     isLoading: isUpdating,
@@ -24,8 +26,6 @@ function FavoriteRecipeCard() {
   } = useUpdateRecipe(getRecipeById);
 
   const { deleteRecipe } = useDeleteRecipe();
-
-  console.log(" smnjsns", errorUpdate);
 
   console.log(" favorite recipe in favorite recipe card", favoriteRecipe);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -35,7 +35,7 @@ function FavoriteRecipeCard() {
   if (isLoading)
     return (
       <div className="flex h-screen items-center justify-center">
-        <span className="loading loading-ring loading-lg"></span>
+        <span className="loading loading-ring loading-lg">wjhbldjhebdkfj</span>
       </div>
     );
 
@@ -171,16 +171,13 @@ function FavoriteRecipeCard() {
                 className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
                 disabled={isUpdating}
               >
-                {isUpdating ? (
-                  <span className="loading loading-ring loading-sm"></span>
-                ) : (
-                  "Submit Review"
-                )}
+                Submit Review
               </button>
             </form>
           )}
         </>
       )}
+
 
       <button
         className="btn btn-secondary border-2 border-pallette-50 bg-pallette-300 font-normal text-pallette-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
@@ -188,6 +185,7 @@ function FavoriteRecipeCard() {
       >
         Remove from Favorites
       </button>
+
     </div>
   );
 }
