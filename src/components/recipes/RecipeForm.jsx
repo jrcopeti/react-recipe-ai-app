@@ -23,6 +23,7 @@ function RecipeForm({
 }) {
   return (
     <>
+
       <form
         onSubmit={handleGenerateRecipe}
         className="flex flex-col items-center p-4"
@@ -30,10 +31,12 @@ function RecipeForm({
         <div className="flex w-full max-w-4xl flex-col items-center space-y-6 md:space-y-8 lg:space-y-10">
           <label className="form-control w-full">
             <div className="label text-center text-xl">
+
               What have you got left in your fridge and pantry? Choose up to
               five ingredients for your recipe.
             </div>
           </label>
+
 
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             <label className="form-control mx-auto w-full max-w-xs">
@@ -74,6 +77,7 @@ function RecipeForm({
               </div>
             </label>
 
+
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
                 <span className="label-text text-xl">Ingredient 3:</span>
@@ -100,6 +104,7 @@ function RecipeForm({
               />
             </label>
           </div>
+
 
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
             <label className="form-control mx-auto w-full max-w-xs">
@@ -156,6 +161,7 @@ function RecipeForm({
             </label>
           </div>
 
+
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
@@ -177,6 +183,7 @@ function RecipeForm({
                 <option value="gluten">Gluten Free</option>
               </select>
             </label>
+
 
             <label className="form-control mx-auto w-full max-w-xs">
               <div className="label">
