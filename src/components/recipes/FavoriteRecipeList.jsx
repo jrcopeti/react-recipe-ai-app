@@ -63,8 +63,10 @@ function FavoriteRecipesList() {
   }
 
   return (
+
     <section className="mt-8">
       <h2 className="text-pallette-10 mb-4 text-6xl font-bold">
+
         Favorite Recipes
       </h2>
       <div className="space-y-6">

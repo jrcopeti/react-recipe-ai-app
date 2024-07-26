@@ -90,7 +90,9 @@ function FavoriteRecipeCard() {
         </Link>
       </div>
     );
+
   return (
+
     <div className="bg-transparent p-6 font-normal text-cyan-950">
       <h2 className="text-pallette-10 mb-2 text-3xl font-bold">
         {favoriteRecipe.title}
@@ -126,14 +128,16 @@ function FavoriteRecipeCard() {
         <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
       </p>
 
+    
+
       <section>
-        <h3 className="mb-2 mt-4 font-semibold">Reviews:</h3>
+        <h3 className="mb-2 mt-4 font-semibold text-4xl">Reviews</h3>
         {favoriteRecipe.reviews.map((review, i) => (
           <div key={i} className="mb-4">
             <div>
               <StarDisplay rating={review.rating} />
             </div>
-            <p>{review.review}</p>
+            <p className='text-xl'>{review.review}</p>
           </div>
         ))}
       </section>
@@ -170,13 +174,14 @@ function FavoriteRecipeCard() {
               onSubmit={handleReviewSubmit}
               className="flex flex-col items-center justify-center"
             >
-              <label className="form-control w-full max-w-sm">
-                Choose a rating:
+              <label className="form-control w-full max-w-sm text-3xl">
+                Choose a rating
                 <StarRating rating={rating} setRating={setRating} />
                 <input
                   type="text"
                   name="review"
                   placeholder="Write your review here..."
+                  maxLength={100}
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
                   className="input input-bordered my-2 w-full border-2 border-pallette-50 text-xl"
