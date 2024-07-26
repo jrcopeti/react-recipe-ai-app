@@ -7,7 +7,7 @@ const Navbar = forwardRef(({ toggleSidebar }, ref) => {
       className="sticky top-0 z-50 flex items-center justify-between border-2 border-pallette-50 bg-pallette-400 p-4 text-pallette-200"
     >
       <h1 className="flex-grow text-left text-6xl font-normal">
-        Meal Generator
+        Dinner Generator
       </h1>
       <button className="px-5 py-2" onClick={toggleSidebar}>
         <svg
