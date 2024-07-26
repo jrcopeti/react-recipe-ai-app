@@ -19,8 +19,10 @@ function RecipeCard({
       <div className="flex">
         <img
           src={image}
-          alt=""
-          className="h-96 w-1/2 rounded-2xl object-cover object-center"
+
+          alt={recipe.title}
+          className="h-96 w-1/2 rounded-md object-cover object-center"
+
         />
         <div className="flex-1 pl-4 text-lg">
           <p className="mb-4 text-2xl text-cyan-950">{recipe.description}</p>
@@ -44,10 +46,10 @@ function RecipeCard({
         </div>
       </div>
       <div className="mt-6 text-lg">
-        <h3 className="text-pallette-10 mb-2 text-3xl font-semibold">
-          Instructions:
-        </h3>
-        <ol className="mb-4 list-inside list-decimal text-left text-2xl">
+
+        <h3 className="mb-2 text-3xl font-semibold">Instructions:</h3>
+        <ol className="mb-4 list-inside text-left text-2xl">
+
           {recipe.instructions.map((step, i) => (
             <li key={i}>{step}</li>
           ))}

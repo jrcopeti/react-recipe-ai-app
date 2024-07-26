@@ -69,7 +69,9 @@ const functionData = {
       query: {
         type: "string",
         description:
-          "One or two maximum key word, that has to include a cooking method that can be used as query to the Unsplash API to get an image related to the recipe for the dish",
+
+          "Only two keywords are allowed where the first is the cooking method and the second is the main ingredient. Only space is allowed. Do not include any special characters or numbers.",
+
       },
     },
 
