@@ -10,7 +10,6 @@ function RecipeCard({
   if (!recipe) return null;
 
   return (
-
     <div className="bg-transparent p-6 text-6xl font-normal text-cyan-950">
       <h2 className="text-pallette-10 mb-4 text-center text-4xl font-bold">
         {recipe.title}
@@ -38,7 +37,7 @@ function RecipeCard({
           <h3 className="text-pallette-10 mb-2 mt-4 text-3xl font-semibold">
             Ingredients:
           </h3>
-          <ul className="mb-4 list-inside list-disc text-left text-2xl">
+          <ul className="mb-4 list-inside list-disc text-center text-2xl">
             {recipe.ingredients.map((item, i) => (
               <li key={i}>{item}</li>
             ))}

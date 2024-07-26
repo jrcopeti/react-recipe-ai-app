@@ -9,7 +9,7 @@ function StarRating({ rating, setRating }) {
           type="radio"
           name="rating-2"
           value={value}
-          className={`mask mask-star-2 mx-1 bg-orange-400 hover:bg-orange-500`}
+          className={`mask mask-star-2 mx-1 bg-pallette-300 hover:bg-orange-500`}
           checked={rating === value}
           onChange={() => setRating(value)}
         />
