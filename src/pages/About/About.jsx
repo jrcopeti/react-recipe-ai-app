@@ -3,14 +3,14 @@ function About() {
     <div className="m-0 flex min-h-min items-center justify-center">
       <div className="max-w-5xl p-4 text-center">
         <h1 className="text-pallette-10 mb-8 text-5xl font-bold">
-          About Meal Generator
+          About Dinner Generator
         </h1>
         <p className="mb-12 text-center text-2xl font-normal text-cyan-950">
-          Welcome to the Meal Generator, your personal recipe assistant! Our app
-          helps you transform the ingredients you already have into delightful
-          dinner ideas. Simply enter up to five items from your fridge, and let
-          our AI, powered by ChatGPT, suggest creative and suitable recipes
-          tailored to your preferences and dietary needs.
+          Welcome to the Dinner Generator, your personal recipe assistant! Our
+          app helps you transform the ingredients you already have into
+          delightful dinner ideas. Simply enter up to five items from your
+          fridge, and let our AI, powered by ChatGPT, suggest creative and
+          suitable recipes tailored to your preferences and dietary needs.
         </p>
         <h2 className="text-pallette-10 mb-8 text-4xl font-bold">
           Key Features
@@ -36,7 +36,7 @@ function About() {
         </ul>
         <h2 className="text-pallette-10 mb-8 text-3xl font-bold">
           Join us on a culinary adventure and never wonder what’s for dinner
-          again with Meal Generator!
+          again with Dinner Generator!
         </h2>
       </div>
     </div>
