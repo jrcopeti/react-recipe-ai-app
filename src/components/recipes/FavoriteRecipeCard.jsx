@@ -3,7 +3,7 @@ import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
 import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
 import { useState } from "react";
-import StarRating from './StarRating';
+import StarRating from "./StarRating";
 import StarDisplay from "./StarDisplay";
 
 function FavoriteRecipeCard() {
@@ -155,7 +155,7 @@ function FavoriteRecipeCard() {
           ) : (
             <form onSubmit={handleReviewSubmit}>
               <label className="block" htmlFor="rating">
-               Choose a rating from one to five stars:
+                Choose a rating from one to five stars:
               </label>
               <StarRating rating={rating} setRating={setRating} />
               <input
@@ -188,7 +188,6 @@ function FavoriteRecipeCard() {
       >
         Remove from Favorites
       </button>
-
     </div>
   );
 }

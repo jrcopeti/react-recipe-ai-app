@@ -8,7 +8,7 @@ function StarDisplay({ rating }) {
           key={value}
           type="radio"
           name={`rating-${value}`}
-          className={`mask mask-star ${value <= rating ? 'bg-yellow-500' : 'bg-gray-300'}`}
+          className={`mask mask-star ${value <= rating ? 'bg-orange-400' : 'bg-gray-300'}`}
           readOnly
           checked={value === rating}
         />
@@ -17,4 +17,4 @@ function StarDisplay({ rating }) {
   );
 }
 
-export default StarDisplay;
+export default StarDisplay
