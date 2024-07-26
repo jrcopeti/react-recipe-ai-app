@@ -13,11 +13,8 @@ function FavoriteRecipesList() {
   } = useGetAllRecipes();
   console.log("favoriteRecipes", favoriteRecipes);
 
-  const {
-    deleteRecipe,
-    isLoading: isDeleting,
-    errorDeleting,
-  } = useDeleteRecipe(getAllRecipes);
+  const { deleteRecipe, isLoading: isDeleting } =
+    useDeleteRecipe(getAllRecipes);
 
   console.log("deletedRecipeIds", deletedRecipeIds);
 
@@ -26,7 +23,7 @@ function FavoriteRecipesList() {
     if (deletedRecipeIds && deletedRecipeIds.length > 0) {
       timer = setTimeout(() => {
         setDeletedRecipeIds([]);
-      }, 5000);
+      }, 3000);
     }
 
     return () => clearTimeout(timer);
@@ -55,7 +52,7 @@ function FavoriteRecipesList() {
 
   if (!isLoading && (!favoriteRecipes || favoriteRecipes.length === 0)) {
     return (
-      <div className="flex w-fit items-center justify-center rounded-lg p-6 text-4xl">
+      <div className=" mt-3 flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
         <p>No recipes to display</p>
       </div>
     );
@@ -76,8 +73,10 @@ function FavoriteRecipesList() {
             <p>{recipe.description}</p>
 
             {deletedRecipeIds.includes(recipe.id) && (
-              <div className="w-fit rounded-lg border border-pallette-200 bg-pallette-400 p-6 text-center shadow-lg">
-                <p>Recipe deleted successfully!</p>
+              <div className="toast">
+                <div className="flex w-fit transform flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg transition-transform duration-100 ease-in-out md:right-[110px]">
+                  <p>Recipe removed from the list.</p>
+                </div>
               </div>
             )}
 
@@ -110,11 +109,7 @@ function FavoriteRecipesList() {
                   onClick={() => handleDeleteRecipe(recipe.id)}
                   disabled={isDeleting}
                 >
-                  {isDeleting ? (
-                    <span className="loading loading-ring loading-sm"></span>
-                  ) : (
-                    "Remove from Favorites"
-                  )}
+                  Remove from Favorites
                 </button>
               </div>
             )}
