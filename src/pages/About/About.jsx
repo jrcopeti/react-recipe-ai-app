@@ -1,11 +1,11 @@
 function About() {
   return (
-    <div className="m-0 flex min-h-screen items-center justify-center">
+    <div className="m-0 flex min-h-min items-center justify-center">
       <div className="max-w-5xl p-4 text-center">
-        <h1 className="mb-8 text-6xl font-bold text-cyan-950">
+        <h1 className="mb-8 text-5xl font-bold text-cyan-950">
           About Dinner Generator
         </h1>
-        <p className="mb-12 text-balance text-2xl font-normal text-cyan-950">
+        <p className="mb-12 text-center text-2xl font-normal text-cyan-950">
           Welcome to the Dinner Generator, your personal recipe assistant! Our
           app helps you transform the ingredients you already have into
           delightful dinner ideas. Simply enter up to five items from your
@@ -13,7 +13,7 @@ function About() {
           suitable recipes tailored to your preferences and dietary needs.
         </p>
         <h2 className="mb-8 text-4xl font-bold text-cyan-950">Key Features</h2>
-        <ul className="mb-12 list-inside list-disc text-center text-2xl font-normal text-cyan-950">
+        <ul className="mb-12 list-inside list-disc text-left text-2xl font-normal text-cyan-950">
           <li>
             Ingredient-Based Recipes: Input the ingredients you have, and
             receive recipes that make the most of what’s in your fridge.
@@ -32,7 +32,7 @@ function About() {
             diverse recipe suggestions every time.
           </li>
         </ul>
-        <h2 className="mb-8 text-4xl font-bold text-cyan-950">
+        <h2 className="mb-8 text-3xl font-bold text-cyan-950">
           Join us on a culinary adventure and never wonder what’s for dinner
           again with Dinner Generator!
         </h2>
