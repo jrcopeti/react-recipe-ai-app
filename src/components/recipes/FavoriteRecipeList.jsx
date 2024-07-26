@@ -62,21 +62,17 @@ function FavoriteRecipesList() {
   }
 
   return (
-
     <section className="mt-8">
       <h2 className="mb-4 text-6xl font-bold text-cyan-950">
-
         Favorite Recipes
       </h2>
       <div className="space-y-6">
         {favoriteRecipes.map((recipe) => (
-
-
           <div
             className="flex flex-col items-center justify-center gap-2"
             key={recipe.id}
           >
-            <h3>{recipe.title}</h3>
+            <h3 className="text-3xl font-bold">{recipe.title} </h3>
             <p>{recipe.description}</p>
 
             {deletedRecipeIds.includes(recipe.id) && (
@@ -87,7 +83,6 @@ function FavoriteRecipesList() {
 
             {errorDeleteRecipeIds.includes(recipe.id) ? (
               <div className="w-fit rounded-lg border border-pallette-200 bg-pallette-400 p-6 text-center shadow-lg">
-
                 <p>There was an error in deleting the recipe. </p>
                 <button
                   className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
@@ -100,7 +95,7 @@ function FavoriteRecipesList() {
                 </div>
               </div>
             ) : (
-              <div className="flex gap-3">
+              <div className="flex items-center gap-3">
                 <Link to={`/recipes/${recipe.id}`}>
                   <button
                     disabled={isDeleting}
