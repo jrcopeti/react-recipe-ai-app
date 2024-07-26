@@ -45,12 +45,12 @@ function AppLayout() {
           toggleSidebar={toggleSidebar}
         />
         <main className="relative flex-grow text-center text-2xl text-cyan-950">
-          <div
+          {/* <div
             className="absolute inset-0 -z-10 bg-pallette-200 bg-center bg-no-repeat opacity-50"
             style={{
-              backgroundImage: `url(${backgroundImage})`, 
+              backgroundImage: `url(${backgroundImage})`,
             }}
-          ></div>
+          ></div> */}
           <div className="relative z-10 p-6">
             <Outlet />
           </div>
