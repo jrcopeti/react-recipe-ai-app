@@ -128,7 +128,7 @@ function FavoriteRecipeCard() {
       <h3 className="text-pallette-10 mb-2 text-3xl font-semibold">
         Instructions:
       </h3>
-      <ol className="mb-4 list-inside list-decimal text-left text-2xl">
+      <ol className="mb-4 list-inside text-left text-2xl">
         {favoriteRecipe.instructions.map((step, i) => (
           <li key={i}>{step}</li>
         ))}
@@ -141,12 +141,10 @@ function FavoriteRecipeCard() {
       </p>
 
       <section>
-        <h3 className="mb-2 mt-4 text-2xl font-semibold">Reviews</h3>
+        <h3 className="mt-4 text-4xl font-semibold">Reviews</h3>
         {favoriteRecipe.reviews.map((review, i) => (
-          <div key={i} className="mb-4">
-            <div>
-              <StarDisplay rating={review.rating} />
-            </div>
+          <div key={i}>
+            <StarDisplay rating={review.rating} />
             <p className="text-xl">{review.review}</p>
           </div>
         ))}
@@ -184,7 +182,7 @@ function FavoriteRecipeCard() {
               onSubmit={handleReviewSubmit}
               className="flex flex-col items-center justify-center"
             >
-              <label className="form-control w-full max-w-sm text-3xl">
+              <label className="form-control mt-4 w-full max-w-sm text-3xl">
                 Choose a rating
                 <StarRating rating={rating} setRating={setRating} />
                 <input
