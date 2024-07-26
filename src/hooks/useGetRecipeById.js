@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getRecipeById as getRecipeByIdApi } from "../services/apiRecipes";
 
 function useGetRecipeById(recipeId) {
@@ -21,6 +20,7 @@ function useGetRecipeById(recipeId) {
 
   useEffect(() => {
     getRecipeById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipeId]);
 
   return { recipe, isLoading, errorRecipeById, getRecipeById };

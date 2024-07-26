@@ -24,6 +24,7 @@ function useImage(recipe) {
     if (recipe) {
       getImage(recipe.query);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipe]);
   return { image, isLoadingImage, errorImage, getImage };
 }
