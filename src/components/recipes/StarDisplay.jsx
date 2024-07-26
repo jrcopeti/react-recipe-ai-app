@@ -6,7 +6,7 @@ function StarDisplay({ rating }) {
           key={value}
           type="radio"
           name={`rating-${value}`}
-          className={`mask mask-star cursor-default ${value <= rating ? "bg-orange-400" : "bg-gray-300"}`}
+          className={`mask mask-star cursor-default ${value <= rating ? "bg-pallette-300" : "bg-gray-300"}`}
           readOnly
           checked={value === rating}
         />
