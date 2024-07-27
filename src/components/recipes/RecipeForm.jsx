@@ -31,7 +31,7 @@ function RecipeForm({
     <>
       <form
         onSubmit={handleGenerateRecipe}
-        className="flex flex-col items-center p-6"
+        className="flex flex-col items-center p-2"
       >
         <div className="flex w-full max-w-4xl flex-col items-center space-y-6 md:space-y-8 lg:space-y-10">
           {/* Form Title */}
