@@ -12,6 +12,7 @@ function useGetRecipeById(recipeId) {
       const data = await getRecipeByIdApi(recipeId);
       setRecipe(data);
     } catch (error) {
+      console.log("Error in useGetRecipeById", error);
       setErrorRecipeById(error);
     } finally {
       setIsLoading(false);

@@ -34,20 +34,15 @@ function FavoriteRecipeCard() {
     isLoading: isUpdating,
     errorUpdate,
   } = useUpdateRecipe(getRecipeById);
+  console.log("errorUpdate in favorite card", errorUpdate);
 
   // delete recipe
   const { deleteRecipe } = useDeleteRecipe();
 
-  if (isLoading)
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <span className="loading loading-ring loading-lg">wjhbldjhebdkfj</span>
-      </div>
-    );
-
-  const handleDeleteRecipe = (id) => {
+  const handleDeleteRecipe = async (id) => {
     console.log("Recipe deleted in Favorite recipes list", id);
-    deleteRecipe(id);
+    await deleteRecipe(id);
+
     navigate("/recipes");
   };
 
@@ -55,9 +50,9 @@ function FavoriteRecipeCard() {
     setIsReviewing((prevState) => !prevState);
   };
 
-  const handleReviewSubmit = (e) => {
+  const handleReviewSubmit = async (e) => {
     e.preventDefault();
-    console.log("review submitted");
+
     const updatedRecipe = {
       ...favoriteRecipe,
       reviews: [
@@ -68,13 +63,25 @@ function FavoriteRecipeCard() {
         },
       ],
     };
-    updateRecipe(favoriteRecipe.id, updatedRecipe);
-    setRating(1);
-    setReview("");
-    setIsReviewing(false);
+    try {
+      await updateRecipe(favoriteRecipe.id, updatedRecipe);
+      setRating(1);
+      setReview("");
+      setIsReviewing(false);
+      console.log("review submitted");
+    } catch {
+      console.error("Error updating review");
+    }
   };
 
-  if (!isLoading && !favoriteRecipe)
+  if (isLoading)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-ring loading-lg">wjhbldjhebdkfj</span>
+      </div>
+    );
+
+  if (!favoriteRecipe && !isLoading)
     return (
       <div className="flex w-fit flex-col rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 text-pallette-50 shadow-md shadow-zinc-500">
         <p>No Recipe was found here...</p>
@@ -83,10 +90,14 @@ function FavoriteRecipeCard() {
 
   if (errorRecipeById)
     return (
-      <div className="flex w-fit flex-col rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 text-pallette-500 shadow-md shadow-zinc-500">
-        <p>Error: {errorRecipeById.message}</p>
-        <Link to="/">
-          <button>Back to Home</button>
+      <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
+        <p>There was an error. Try again</p>
+        <Link
+          to="/recipes"
+          className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
+          onClick={() => window.location.reload()}
+        >
+          Try again
         </Link>
       </div>
     );
@@ -168,12 +179,12 @@ function FavoriteRecipeCard() {
           </button>
         </>
       ) : (
-        <>
+        <div className='flex justify-center items-center'>
           {errorUpdate ? (
-            <div className="flex w-fit flex-col rounded-lg border border-pallette-200 bg-pallette-400 p-6 shadow-lg">
-              <p>There was an error in creating a review. </p>
+              <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg text-2xl">
+              <p>There was an error creating Review. Try Again.</p>
               <button
-                className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
                 onClick={() => window.location.reload()}
               >
                 Try Again
@@ -194,7 +205,7 @@ function FavoriteRecipeCard() {
                   maxLength={100}
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
-                  className="input input-bordered my-2 w-full border-2 border-pallette-50 text-xl"
+                  className="input input-bordered my-2 w-[400px] border-2 border-pallette-50 text-xl"
                   disabled={isUpdating}
                   required
                 />
@@ -202,7 +213,7 @@ function FavoriteRecipeCard() {
               <div className="flex items-center gap-4">
                 <button
                   type="submit"
-                  className="btn btn-secondary m-2 max-w-xs border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                  className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
                   disabled={isUpdating}
                 >
                   Submit Review
@@ -218,7 +229,7 @@ function FavoriteRecipeCard() {
               </div>
             </form>
           )}
-        </>
+        </div>
       )}
     </div>
   );

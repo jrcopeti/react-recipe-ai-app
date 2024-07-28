@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getAllRecipesApi } from "../services/apiRecipes";
 
 function useGetAllRecipes() {
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 

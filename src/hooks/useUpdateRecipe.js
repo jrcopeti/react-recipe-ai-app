@@ -12,10 +12,11 @@ function useUpdateRecipe(refetchRecipe) {
     try {
       const data = await updateRecipeApi(id, recipe);
       setUpdatedRecipe(data);
-      if (refetchRecipe) refetchRecipe();
+      if (refetchRecipe) await refetchRecipe();
     } catch (error) {
       console.log("error in the hook", error);
       setErrorUpdate(error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
