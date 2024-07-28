@@ -36,8 +36,8 @@ function RecipeCard({
             Ingredients:
           </h3>
           <ul className="mb-4 list-inside list-disc text-center text-2xl">
-            {recipe.ingredients.map((item, i) => (
-              <li key={i}>{item}</li>
+            {recipe.ingredients.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
@@ -45,8 +45,8 @@ function RecipeCard({
       <div className="mt-6 text-lg">
         <h3 className="mb-2 text-3xl font-semibold">Instructions:</h3>
         <ol className="mb-4 list-inside text-left text-2xl">
-          {recipe.instructions.map((step, i) => (
-            <li key={i}>{step}</li>
+          {recipe.instructions.map((step) => (
+            <li key={step}>{step}</li>
           ))}
         </ol>
         <p className="text-2xl">

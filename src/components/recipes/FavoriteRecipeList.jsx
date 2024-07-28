@@ -18,12 +18,13 @@ function FavoriteRecipesList() {
     isLoading,
     error,
   } = useGetAllRecipes();
-  console.log("error", error);
-  console.log("favoriteRecipes", favoriteRecipes);
 
   // delete recipe
-  const { deleteRecipe, isLoading: isDeleting } =
-    useDeleteRecipe(getAllRecipes);
+  const {
+    deleteRecipe,
+    isLoading: isDeleting,
+    isRemoving,
+  } = useDeleteRecipe(getAllRecipes);
 
   useEffect(() => {
     let timer;
@@ -53,7 +54,7 @@ function FavoriteRecipesList() {
   if (!favoriteRecipes && !isLoading) {
     return (
       <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
-        <p>There was an error. Try again</p>
+        <p>There was an error in getting recipes</p>
         <button
           className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
           onClick={() => window.location.reload()}
@@ -74,7 +75,7 @@ function FavoriteRecipesList() {
   if (favoriteRecipes.length === 0 && !isLoading) {
     return (
       <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
-        <p>No recipes to display</p>
+        <p>No recipes to display. Start by saving a recipe.</p>
       </div>
     );
   }
@@ -130,7 +131,7 @@ function FavoriteRecipesList() {
                 <div className="flex items-center gap-3">
                   <Link to={`/recipes/${recipe.id}`}>
                     <button
-                      disabled={isDeleting}
+                      disabled={isDeleting || isRemoving}
                       className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
                     >
                       View Recipe
@@ -140,7 +141,7 @@ function FavoriteRecipesList() {
                   <button
                     className="space btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
                     onClick={() => handleDeleteRecipe(recipe.id)}
-                    disabled={isDeleting}
+                    disabled={isDeleting || isRemoving}
                   >
                     Remove from Favorites
                   </button>

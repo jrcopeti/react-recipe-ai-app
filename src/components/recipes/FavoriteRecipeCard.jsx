@@ -1,6 +1,6 @@
 // React
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Hooks
 import { useGetRecipeById } from "../../hooks/useGetRecipeById";
@@ -85,153 +85,169 @@ function FavoriteRecipeCard() {
     return (
       <div className="flex w-fit flex-col rounded-lg border-2 border-pallette-50 bg-pallette-400 p-6 text-pallette-50 shadow-md shadow-zinc-500">
         <p>No Recipe was found here...</p>
+        <button
+          className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+          onClick={() => navigate(-1)}
+        >
+          Go Back
+        </button>
       </div>
     );
 
   if (errorRecipeById)
     return (
       <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
-        <p>There was an error. Try again</p>
-        <Link
-          to="/recipes"
-          className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
-          onClick={() => window.location.reload()}
+        <p>There was an error in loading the recipe</p>
+        <button
+          className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+          onClick={() => navigate(-1)}
         >
-          Try again
-        </Link>
+          Go Back
+        </button>
       </div>
     );
 
   return (
-    <div className="bg-transparent text-6xl font-normal text-cyan-950">
-      <h2 className="mb-4 text-center text-4xl font-bold text-pallette-10">
-        {favoriteRecipe.title}
-      </h2>
+    <>
+      <button
+          className="btn absolute top-2 left-0 btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+          onClick={() => navigate(-1)}
+      >
+        Go Back
+      </button>
+      <div className="bg-transparent text-6xl font-normal text-cyan-950">
+        <h2 className="mb-4 mt-14 md:mt-0 text-center text-4xl font-bold text-pallette-10">
+          {favoriteRecipe.title}
+        </h2>
 
-      <div className="flex flex-col lg:flex-row">
-        <img
-          src={favoriteRecipe.image}
-          alt={favoriteRecipe.title}
-          className="mb-2 h-96 rounded-md object-cover object-center lg:w-1/2"
-        />
+        <div className="flex flex-col lg:flex-row">
+          <img
+            src={favoriteRecipe.image}
+            alt={favoriteRecipe.title}
+            className="mb-2 h-96 rounded-md object-cover object-center lg:w-1/2"
+          />
 
-        <div className="flex-1 pl-4 text-lg">
-          <p className="mb-4 text-2xl text-cyan-950">
-            {favoriteRecipe.description}
-          </p>
-          <p className="text-2xl">
-            <strong>Preparation Time:</strong> {favoriteRecipe.preparationTime}
-          </p>
-          <p className="text-2xl">
-            <strong>Difficulty Level:</strong> {favoriteRecipe.difficultyLevel}
-          </p>
-          <p className="text-2xl">
-            <strong>Dietary Compliance:</strong> {favoriteRecipe.dietaryOptions}
-          </p>
-          <h3 className="mb-2 mt-4 text-3xl font-semibold text-pallette-10">
-            Ingredients:
-          </h3>
-          <ul className="mb-4 list-inside list-disc text-center text-2xl">
-            {favoriteRecipe.ingredients.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <h3 className="mb-2 text-3xl font-semibold text-pallette-10">
-        Instructions:
-      </h3>
-      <ol className="mb-4 list-inside text-left text-2xl">
-        {favoriteRecipe.instructions.map((step, i) => (
-          <li key={i}>{step}</li>
-        ))}
-      </ol>
-      <p className="text-2xl">
-        <strong>Serving Size:</strong> {favoriteRecipe.servingSize}
-      </p>
-      <p className="text-2xl">
-        <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
-      </p>
-
-      <section>
-        <h3 className="mt-4 text-4xl font-semibold">Reviews</h3>
-        {favoriteRecipe.reviews.map((review, i) => (
-          <div key={i}>
-            <StarDisplay rating={review.rating} />
-            <p className="text-xl">{review.review}</p>
+          <div className="flex-1 pl-4 text-lg">
+            <p className="mb-4 text-2xl text-cyan-950">
+              {favoriteRecipe.description}
+            </p>
+            <p className="text-2xl">
+              <strong>Preparation Time:</strong>{" "}
+              {favoriteRecipe.preparationTime}
+            </p>
+            <p className="text-2xl">
+              <strong>Difficulty Level:</strong>{" "}
+              {favoriteRecipe.difficultyLevel}
+            </p>
+            <p className="text-2xl">
+              <strong>Dietary Compliance:</strong>{" "}
+              {favoriteRecipe.dietaryOptions}
+            </p>
+            <h3 className="mb-2 mt-4 text-3xl font-semibold text-pallette-10">
+              Ingredients:
+            </h3>
+            <ul className="mb-4 list-inside list-disc text-center text-2xl">
+              {favoriteRecipe.ingredients.map((item) => (
+                <li key={favoriteRecipe.id}>{item}</li>
+              ))}
+            </ul>
           </div>
-        ))}
-      </section>
+        </div>
+        <h3 className="mb-2 text-3xl font-semibold text-pallette-10">
+          Instructions:
+        </h3>
+        <ol className="mb-4 list-inside text-left text-2xl">
+          {favoriteRecipe.instructions.map((step) => (
+            <li key={favoriteRecipe.id}>{step}</li>
+          ))}
+        </ol>
+        <p className="text-2xl">
+          <strong>Serving Size:</strong> {favoriteRecipe.servingSize}
+        </p>
+        <p className="text-2xl">
+          <strong>Notes and Tips:</strong> {favoriteRecipe.tips}
+        </p>
 
-      {!isReviewing ? (
-        <>
-          <button
-            className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
-            onClick={() => toggleReview()}
-          >
-            Review Recipe
-          </button>
-          <button
-            className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
-            onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
-          >
-            Remove from Favorites
-          </button>
-        </>
-      ) : (
-        <div className='flex justify-center items-center'>
-          {errorUpdate ? (
-              <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg text-2xl">
-              <p>There was an error creating Review. Try Again.</p>
-              <button
-                className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
-                onClick={() => window.location.reload()}
-              >
-                Try Again
-              </button>
+        <section>
+          <h3 className="mt-4 text-4xl font-semibold">Reviews</h3>
+          {favoriteRecipe.reviews.map((review, i) => (
+            <div key={i + review.rating}>
+              <StarDisplay rating={review.rating} />
+              <p className="text-xl">{review.review}</p>
             </div>
-          ) : (
-            <form
-              onSubmit={handleReviewSubmit}
-              className="flex flex-col items-center justify-center"
+          ))}
+        </section>
+
+        {!isReviewing ? (
+          <>
+            <button
+              className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
+              onClick={() => toggleReview()}
             >
-              <label className="form-control mt-4 w-full max-w-sm text-3xl">
-                Choose a rating
-                <StarRating rating={rating} setRating={setRating} />
-                <input
-                  type="text"
-                  name="review"
-                  placeholder="Write your review here..."
-                  maxLength={100}
-                  value={review}
-                  onChange={(e) => setReview(e.target.value)}
-                  className="input input-bordered my-2 w-[400px] border-2 border-pallette-50 text-xl"
-                  disabled={isUpdating}
-                  required
-                />
-              </label>
-              <div className="flex items-center gap-4">
+              Review Recipe
+            </button>
+            <button
+              className="btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+              onClick={() => handleDeleteRecipe(favoriteRecipe.id)}
+            >
+              Remove from Favorites
+            </button>
+          </>
+        ) : (
+          <div className="flex items-center justify-center">
+            {errorUpdate ? (
+              <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-2xl text-pallette-500 shadow-lg">
+                <p>There was an error creating Review. Try Again.</p>
                 <button
-                  type="submit"
-                  className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
-                  disabled={isUpdating}
+                  className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
+                  onClick={() => window.location.reload()}
                 >
-                  Submit Review
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-secondary m-2 max-w-xs border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
-                  disabled={isUpdating}
-                  onClick={() => toggleReview()}
-                >
-                  Cancel
+                  Try Again
                 </button>
               </div>
-            </form>
-          )}
-        </div>
-      )}
-    </div>
+            ) : (
+              <form
+                onSubmit={handleReviewSubmit}
+                className="flex flex-col items-center justify-center"
+              >
+                <label className="form-control mt-4 w-full max-w-sm text-3xl">
+                  Choose a rating
+                  <StarRating rating={rating} setRating={setRating} />
+                  <input
+                    type="text"
+                    name="review"
+                    placeholder="Write your review here..."
+                    maxLength={100}
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    className="input input-bordered my-2 w-[400px] border-2 border-pallette-50 text-xl"
+                    disabled={isUpdating}
+                    required
+                  />
+                </label>
+                <div className="flex items-center gap-4">
+                  <button
+                    type="submit"
+                    className="btn btn-secondary border-2 border-pallette-50 bg-pallette-400 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
+                    disabled={isUpdating}
+                  >
+                    Submit Review
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary m-2 max-w-xs border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+                    disabled={isUpdating}
+                    onClick={() => toggleReview()}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
