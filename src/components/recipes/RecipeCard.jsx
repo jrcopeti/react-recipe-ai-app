@@ -59,7 +59,7 @@ function RecipeCard({
 
       {errorCreating ? (
         <div className="mt-3 flex w-full flex-col items-center rounded-lg border border-pallette-200 bg-pallette-400 p-6 text-4xl shadow-lg">
-          <p>There was an error saving the recipe.</p>
+          <p>There was an error saving the recipe</p>
           <button
             className="w-48 rounded-lg border-2 border-pallette-50 bg-pallette-300 p-3 text-2xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-cyan-900 hover:text-pallette-500"
             onClick={() => setErrorCreating(null)}

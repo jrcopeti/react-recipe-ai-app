@@ -9,10 +9,10 @@ const getAllRecipesApi = async () => {
   try {
     const response = await axios.get(`${apiURL}/recipes`);
     const { data } = response;
-    return data;
+    return data || [];
   } catch (error) {
     console.error("Error fetching recipes", error);
-    return [];
+    throw error;
   }
 };
 
@@ -51,8 +51,9 @@ const updateRecipe = async (recipeId, newRecipe) => {
 
 const deleteRecipe = async (recipeId) => {
   try {
-    await axios.delete(`${apiURL}/recipes/${recipeId}`);
-    console.log("Recipe deleted", recipeId);
+    const deleted = await axios.delete(`${apiURL}/recipes/${recipeId}`);
+    console.log("Recipe deleted", deleted);
+    return deleted;
   } catch (error) {
     console.error("Error deleting recipe", error);
     throw error;

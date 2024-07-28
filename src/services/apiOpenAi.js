@@ -69,9 +69,7 @@ const functionData = {
       query: {
         type: "string",
         description:
-
           "Only two keywords are allowed where the first is the cooking method and the second is the main ingredient. Only space is allowed. Do not include any special characters or numbers.",
-
       },
     },
 
@@ -107,14 +105,13 @@ export const fetchResponseAi = async (prompt) => {
     const parsedData = JSON.parse(data ?? "");
     console.log("parsed data:----", parsedData);
 
-    if (parsedData === null) {
-      return null;
-    } else if (parsedData === undefined) {
-      throw new Error("Recipe not found");
+    if (!parsedData) {
+      throw new Error("No data found");
     } else {
       return parsedData;
     }
   } catch (error) {
     console.error("Error:", error);
+    throw error;
   }
 };

@@ -27,6 +27,8 @@ function GenerateRecipe() {
   const { recipe, isLoadingRecipeAi, errorAi, fetchRecipeAi, setRecipe } =
     useFetchRecipeAi();
 
+    console.log("errorAi", errorAi);
+
   const {
     createRecipe,
     isLoading: isCreating,
@@ -105,7 +107,7 @@ function GenerateRecipe() {
       setIsSaved(true);
       setRecipe(null);
     } catch (error) {
-      console.error("Error saving recipe", error);
+      console.error("Error saving recipe");
     }
   };
 
@@ -126,10 +128,15 @@ function GenerateRecipe() {
 
   if (errorAi)
     return (
-      <div className="flex w-full flex-col rounded-lg border-2 border-pallette-50 bg-pallette-50 p-6 text-pallette-500 shadow-md shadow-zinc-500">
-        <p>There was an error in generating a recipe</p>
-        <button onClick={() => window.location.reload()}>Try Again</button>
-      </div>
+      <div className="mt-3 flex w-fit flex-col items-center justify-center rounded-lg border-2 border-pallette-50 bg-pallette-600 p-6 text-pallette-500 shadow-lg">
+      <p>There was an error in generating a recipe</p>
+      <button
+        className="space hover:text-pallette-500y btn btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50"
+        onClick={() => window.location.reload()}
+      >
+        Try Again
+      </button>
+    </div>
     );
 
   return (
