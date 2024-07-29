@@ -98,12 +98,9 @@ export const fetchResponseAi = async (prompt) => {
       tool_choice: { type: "function", function: { name: "recipeData" } },
       temperature: 0,
     });
-    console.log("response:---", response);
     const data =
       response.choices?.[0].message.tool_calls?.[0]?.function.arguments;
-    console.log("data:---", data);
     const parsedData = JSON.parse(data ?? "");
-    console.log("parsed data:----", parsedData);
 
     if (!parsedData) {
       throw new Error("No data found");

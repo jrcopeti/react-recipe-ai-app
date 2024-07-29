@@ -31,7 +31,6 @@ const createRecipe = async (newRecipe) => {
   try {
     const response = await axios.post(`${apiURL}/recipes`, newRecipe);
     const { data } = response;
-    console.log("Recipe created", data);
     return data;
   } catch (error) {
     console.error("Error creating recipe", error);
@@ -42,7 +41,6 @@ const createRecipe = async (newRecipe) => {
 const updateRecipe = async (recipeId, newRecipe) => {
   try {
     await axios.put(`${apiURL}/recipes/${recipeId}`, newRecipe);
-    console.log("Recipe updated", newRecipe);
   } catch (error) {
     console.error("Error updating recipe", error);
     throw error;
@@ -52,7 +50,6 @@ const updateRecipe = async (recipeId, newRecipe) => {
 const deleteRecipe = async (recipeId) => {
   try {
     const deleted = await axios.delete(`${apiURL}/recipes/${recipeId}`);
-    console.log("Recipe deleted", deleted);
     return deleted;
   } catch (error) {
     console.error("Error deleting recipe", error);

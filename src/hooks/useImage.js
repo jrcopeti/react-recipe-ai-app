@@ -5,7 +5,6 @@ function useImage(recipe) {
   const [image, setImage] = useState(null);
   const [isLoadingImage, setIsLoading] = useState(false);
   const [errorImage, setErrorImage] = useState(null);
-  console.log("recipe in useImage hook", recipe);
   const getImage = async () => {
     setIsLoading(true);
     setErrorImage(null);

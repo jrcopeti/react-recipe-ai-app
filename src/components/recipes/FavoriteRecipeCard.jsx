@@ -5,9 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 // Hooks
 import { useGetRecipeById } from "../../hooks/useGetRecipeById";
 import { useUpdateRecipe } from "../../hooks/useUpdateRecipe";
-
 import { useDeleteRecipe } from "../../hooks/useDeleteRecipe";
 
+//Components
 import StarRating from "./StarRating";
 import StarDisplay from "./StarDisplay";
 
@@ -34,15 +34,12 @@ function FavoriteRecipeCard() {
     isLoading: isUpdating,
     errorUpdate,
   } = useUpdateRecipe(getRecipeById);
-  console.log("errorUpdate in favorite card", errorUpdate);
 
   // delete recipe
   const { deleteRecipe } = useDeleteRecipe();
 
   const handleDeleteRecipe = async (id) => {
-    console.log("Recipe deleted in Favorite recipes list", id);
     await deleteRecipe(id);
-
     navigate("/recipes");
   };
 
@@ -68,7 +65,6 @@ function FavoriteRecipeCard() {
       setRating(1);
       setReview("");
       setIsReviewing(false);
-      console.log("review submitted");
     } catch {
       console.error("Error updating review");
     }
@@ -110,13 +106,13 @@ function FavoriteRecipeCard() {
   return (
     <>
       <button
-          className="btn absolute top-2 left-0 btn-secondary m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
-          onClick={() => navigate(-1)}
+        className="btn btn-secondary absolute left-0 top-2 m-2 border-2 border-pallette-50 bg-pallette-300 text-xl font-normal text-pallette-500 shadow-md shadow-zinc-500 hover:border-pallette-50 hover:bg-pallette-50 hover:text-pallette-500"
+        onClick={() => navigate(-1)}
       >
-        Go Back
+        Back
       </button>
       <div className="bg-transparent text-6xl font-normal text-cyan-950">
-        <h2 className="mb-4 mt-14 md:mt-0 text-center text-4xl font-bold text-pallette-10">
+        <h2 className="mb-4 mt-14 text-center text-4xl font-bold text-pallette-10 md:mt-0">
           {favoriteRecipe.title}
         </h2>
 
@@ -147,8 +143,8 @@ function FavoriteRecipeCard() {
               Ingredients:
             </h3>
             <ul className="mb-4 list-inside list-disc text-center text-2xl">
-              {favoriteRecipe.ingredients.map((item) => (
-                <li key={favoriteRecipe.id}>{item}</li>
+              {favoriteRecipe.ingredients.map((item, i) => (
+                <li key={i + item}>{item}</li>
               ))}
             </ul>
           </div>
@@ -157,8 +153,8 @@ function FavoriteRecipeCard() {
           Instructions:
         </h3>
         <ol className="mb-4 list-inside text-left text-2xl">
-          {favoriteRecipe.instructions.map((step) => (
-            <li key={favoriteRecipe.id}>{step}</li>
+          {favoriteRecipe.instructions.map((step, i) => (
+            <li key={i + step}>{step}</li>
           ))}
         </ol>
         <p className="text-2xl">

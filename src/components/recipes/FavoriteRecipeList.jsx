@@ -38,7 +38,6 @@ function FavoriteRecipesList() {
   }, [deletedRecipeIds]);
 
   const handleDeleteRecipe = async (id) => {
-    console.log("Recipe deleted in Favorite recipes list", id);
     try {
       await deleteRecipe(id);
       setDeletedRecipeIds((prev) => [...prev, id]);

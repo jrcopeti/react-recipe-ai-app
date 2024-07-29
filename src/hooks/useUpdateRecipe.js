@@ -14,7 +14,6 @@ function useUpdateRecipe(refetchRecipe) {
       setUpdatedRecipe(data);
       if (refetchRecipe) await refetchRecipe();
     } catch (error) {
-      console.log("error in the hook", error);
       setErrorUpdate(error);
       throw error;
     } finally {
